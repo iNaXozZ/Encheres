@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Encheres.Vues.InscriptionPageVue"
+             BackgroundColor="White">
+   
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <OnPlatform.iOS>
+                0,20,0,0
+            </OnPlatform.iOS>
+            <OnPlatform.Android>
+                0,0,0,0
+            </OnPlatform.Android>
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <Grid BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center" 
+                         Margin="0,10,0,0" Grid.Row="0">
+                <Label Text="Romain Tacon APS4"/>
+            </StackLayout>
+
+
+            <Grid Grid.Row="1" Margin="20,0,20,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+                <Label Text="Page d'inscription" FontSize="20" HorizontalTextAlignment="Center" TextColor="#3897F0"/>
+
+                <Image Source="encheres.jpg" HeightRequest="110" VerticalOptions="EndAndExpand"/>
+                <Entry Grid.Row="1" Placeholder="Pseudo" Text="{Binding Pseudo}" PlaceholderColor="#bababa" FontSize="16"/>
+                <Entry Grid.Row="2" Placeholder="Email" Text="{Binding Email}" PlaceholderColor="#bababa" FontSize="16"/>
+                <Entry Grid.Row="3" Placeholder="Mot de passe" Text="{Binding Password}" PlaceholderColor="#bababa" FontSize="16"/>
+                <Entry Grid.Row="4" Placeholder="Photo" Text="{Binding Photo}" PlaceholderColor="#bababa" FontSize="16"/>
+               
+            </Grid>
+            <StackLayout Grid.Row="2" BackgroundColor="White">
+                <Grid Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Retour" BackgroundColor="#3897F0" TextColor="White" Margin="20,0,20,0" Clicked="OnClickRetour" CornerRadius="10"/>
+                    <Button Text="S'inscrire" BackgroundColor="IndianRed" TextColor="White" Margin="20,0,20,0" Grid.Column="2" Command="{Binding CommandeButtonRegistration}" Clicked="OnClickPageEnchere" CornerRadius="10"/>
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
