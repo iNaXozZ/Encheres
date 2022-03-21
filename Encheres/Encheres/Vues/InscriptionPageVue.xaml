@@ -57,7 +57,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Button Text="Retour" BackgroundColor="#3897F0" TextColor="White" Margin="20,0,20,0" Clicked="OnClickRetour" CornerRadius="10"/>
-                    <Button Text="S'inscrire" BackgroundColor="IndianRed" TextColor="White" Margin="20,0,20,0" Grid.Column="2" Command="{Binding CommandeButtonRegistration}" Clicked="OnClickPageEnchere" CornerRadius="10"/>
+                    <Button Text="S'inscrire" BackgroundColor="IndianRed" TextColor="White" Margin="20,0,20,0" Grid.Column="2" Command="{Binding CommandeButtonRegistration}" CornerRadius="10"/>
                 </Grid>
             </StackLayout>
         </Grid>

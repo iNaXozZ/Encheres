@@ -26,11 +26,6 @@ namespace Encheres.Vues
             Navigation.PushAsync(new LoginPageVue());
         }
 
-        private void OnClickPageEnchere(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new ListeEnchereVue());
-        }
-
         
     }
 }

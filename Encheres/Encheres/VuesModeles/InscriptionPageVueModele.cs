@@ -1,5 +1,6 @@
 ﻿using Encheres.Modeles;
 using Encheres.Services;
+using Encheres.Vues;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +12,7 @@ namespace Encheres.VuesModeles
 {
     class InscriptionPageVueModele : BaseVueModele
     {
+       
         #region Attributs
         private readonly ApiRegistration _apiServicesRegistration = new ApiRegistration();
         private string _pseudo;
@@ -94,7 +96,7 @@ namespace Encheres.VuesModeles
         #endregion
 
         #region Méthodes
-        public void ActionPageRegistration()
+        public  void ActionPageRegistration()
         {
             User unUser = new User(Email, Photo, Password , Pseudo);
             Task.Run(async () =>
@@ -102,6 +104,18 @@ namespace Encheres.VuesModeles
                 if (await _apiServicesRegistration.PostRegistrationAsync(unUser, "api/postUser"))
                 {
                     auth = true;
+                    User.CollClasse.Add(unUser);
+                    if (unUser.Email != null && unUser.Password != null && unUser.Pseudo != null )
+                    {
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            Application.Current.MainPage = new NavigationPage(new ListeEnchereEnCoursVue());
+                        });
+                    }
+                    else
+                    {
+                        await App.Current.MainPage.DisplayAlert("Erreur", "Veuillez Revoir les vos champs", "OK");
+                    }
 
                 }
                 else
