@@ -12,23 +12,23 @@ using Xamarin.Forms.Xaml;
 namespace Encheres.Vues
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListeEnchereEnCoursVue : ContentPage
+    public partial class ListeTousLesEncheresEnCours : ContentPage
     {
-        public ListeEnchereEnCoursVue()
+        public ListeTousLesEncheresEnCours()
         {
             InitializeComponent();
             BindingContext = new ListeEnchereEnCoursVueModele();
         }
-
-        private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListeEnchere_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var current = (Enchere)e.CurrentSelection.FirstOrDefault();
             Navigation.PushAsync(new PageEnchereVue(current));
         }
 
-        private void OnClickVoirTousLesEncheresEnCours(object sender, EventArgs e)
+        private void OnClickRetour2(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new ListeTousLesEncheresEnCours());
+            Navigation.PushAsync(new ListeEnchereEnCoursVue());
         }
     }
+    
 }
