@@ -53,7 +53,7 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Text="Regarder Enchere" BackgroundColor="#3897F0" TextColor="White" Margin="20,0,25,0" Clicked="OnClickEncheresEnCours" CornerRadius="10" />
+                    <Button Text="Regarder Enchere" BackgroundColor="CadetBlue" TextColor="White" Margin="20,0,25,0" Clicked="OnClickEncheresEnCours" CornerRadius="10" />
                     <Button Text="Se connecter" BackgroundColor="IndianRed" TextColor="White" Margin="20,0,25,0" Grid.Column="2" Command="{Binding CommandeButtonAuthentification}"  CornerRadius="10" />
                 </Grid>
             </StackLayout>

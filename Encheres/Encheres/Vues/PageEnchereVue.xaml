@@ -3,17 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Encheres.Vues.PageEnchereVue">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="White">
             <Label Text="{Binding MonEnchere.LeProduit.Nom}"
-                   VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"/>
-            <Image Source="{Binding MonEnchere.LeProduit.Photo}" />
-            <Label Text="{Binding MonEnchere.Datedebut}"
-                VerticalOptions="CenterAndExpand" 
+                   FontAttributes="Bold,Italic"
+                   FontSize="20"
+                   Margin="20"
+                   HorizontalOptions="Center"
+                   TextColor="Black"/>
+
+            <Frame
+                HeightRequest="360" WidthRequest="260"
+                BackgroundColor="white" Padding="0"
+                HasShadow="True" Margin="10" CornerRadius="10"
+                HorizontalOptions="CenterAndExpand">
+                <StackLayout>
+                    <Image Source="{Binding MonEnchere.LeProduit.Photo}"
+                           VerticalOptions="FillAndExpand"
+                           Aspect="AspectFill"/>
+                </StackLayout>
+            </Frame>
+            <Label Text="{Binding MonEnchere.Datedebut, StringFormat='Date Début: {0}'}"
+                TextColor="Black"
                 HorizontalOptions="CenterAndExpand" />
-            <Label Text="{Binding MonEnchere.Datefin}"
-                VerticalOptions="CenterAndExpand" 
+            <Label  Text="{Binding MonEnchere.Datefin, StringFormat='Date Fin: {0}'}"
+                TextColor="Black"
                 HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding }" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -3,36 +3,158 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Encheres.Vues.ListeEnchereEnCoursVue">
 
-    <ContentPage.Content>
+    <StackLayout>
+        <StackLayout Orientation="Horizontal">
+
+            <Label Text="Liste des enchères en cours"
+                   Margin="8,8,8,0"
+                   FontSize="Medium"
+                   TextColor="Crimson"
+                   FontAttributes="Bold"/>
+            
+            <Button HorizontalOptions="EndAndExpand"
+                   Text="Voir" 
+                    Margin="8,2,2,0"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   TextColor="CadetBlue"
+                    Clicked="OnClickVoirTousLesEncheresEnCours"/>
+
+
+        </StackLayout>
+        <Label Text="Liste des enchères classiques :"
+                   Margin="8,8,8,0"
+                   FontSize="Medium"
+                   TextColor="CadetBlue"
+                   FontAttributes="Bold"/>
+
+        <CollectionView ItemsSource="{Binding MaListeEncheresEnCoursTypeClassique} "
+                        ItemsLayout="HorizontalList"
+                        SelectionMode="Single" 
+                        SelectionChanged="CollectionView_SelectionChanged">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Grid Padding="10,10,10,12" Margin="12">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="110" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="{Binding LeProduit.Photo}"
+                               Grid.Row="0"
+                               Aspect="AspectFill"
+                               WidthRequest="140"
+                               HeightRequest="140" />
+
+                        <StackLayout Grid.Row="1">
+
+                            <Label Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Text="{Binding LeProduit.Nom}"
+                                   FontAttributes="Bold" />
+                        </StackLayout>
+
+                    </Grid>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
         <StackLayout>
-            <Label Text="Enchères En Cours" />
-            <CollectionView ItemsSource="{Binding MaListeEncheresEnCours}"  SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged" VerticalOptions="Fill">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical"
-                        Span="2" />
-                </CollectionView.ItemsLayout>
+            <Label Text="Liste des enchères inverses : "
+                   Margin="8,8,8,0"
+                   FontSize="Medium"
+                   TextColor="CadetBlue"
+                   FontAttributes="Bold"/>
+
+
+            <CollectionView ItemsSource="{Binding MaListeEncheresEnCoursTypeInverse}"
+                        ItemsLayout="HorizontalList"
+                        SelectionMode="Single" 
+                        SelectionChanged="CollectionView_SelectionChanged">
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="10">
+
+                        <Grid Padding="10" Margin="12">
+
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="150" />
+                                <RowDefinition Height="110" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="90"/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Row="0"
-                       Source="{Binding LeProduit.Photo}"
-                       Aspect="AspectFill"
-                       HeightRequest="60"
-                       WidthRequest="60" />
-                            <Label Grid.Row="1"
-                       Text="{Binding LeProduit.Nom}"
-                                FontAttributes="Bold"
-                       LineBreakMode="TailTruncation" />
+
+                            <Image Source="{Binding LeProduit.Photo}"
+                               Grid.Row="0"
+                               Aspect="AspectFill"
+                               WidthRequest="140"
+                               HeightRequest="140" />
+
+                            <StackLayout Grid.Row="1">
+
+                                <Label Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Text="{Binding LeProduit.Nom}"
+                                   FontAttributes="Bold" />
+                            </StackLayout>
+
                         </Grid>
+
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </StackLayout>
-    </ContentPage.Content>
+        <StackLayout>
+
+            <Label Text="Liste des enchères flashs :"
+                   Margin="8,8,8,0"
+                   FontSize="Medium"
+                   TextColor="CadetBlue"
+                   FontAttributes="Bold"/>
+
+            <CollectionView ItemsSource="{Binding MaListeEncheresEnCoursTypeFlash}"
+                        ItemsLayout="HorizontalList"
+                        SelectionMode="Single" 
+                        SelectionChanged="CollectionView_SelectionChanged">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Grid Padding="10" Margin="12">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="110" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="90"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="{Binding LeProduit.Photo}"
+                               Grid.Row="0"
+                               Aspect="AspectFill"
+                               WidthRequest="140"
+                               HeightRequest="140" />
+
+                            <StackLayout Grid.Row="1">
+
+                                <Label Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Text="{Binding LeProduit.Nom}"
+                                   FontAttributes="Bold" />
+                            </StackLayout>
+
+                        </Grid>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+    </StackLayout>
+    
 </ContentPage>

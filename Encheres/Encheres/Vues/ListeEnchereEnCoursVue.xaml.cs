@@ -25,5 +25,10 @@ namespace Encheres.Vues
             var current = (Enchere)e.CurrentSelection.FirstOrDefault();
             Navigation.PushAsync(new PageEnchereVue(current));
         }
+
+        /*private void OnClickVoirTousLesEncheresEnCours(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new )
+        }*/
     }
 }
