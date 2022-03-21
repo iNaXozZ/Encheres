@@ -11,8 +11,6 @@ namespace Encheres.Services
 {
     class ApiAuthentification
     {
-        #region Attributs 
-        #endregion
         #region Methodes
         public async Task<T> GetAuthAsync<T>(string _email, string _password, string paramUrl)
         {

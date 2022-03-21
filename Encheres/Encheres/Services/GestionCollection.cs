@@ -8,6 +8,7 @@ namespace Encheres.Services
 {
     class GestionCollection
     {
+        #region Méthodes
         public static ObservableCollection<T> GetListes<T>(List<T> paramList)
         {
             ObservableCollection<T> resultat = new ObservableCollection<T>();
@@ -35,5 +36,6 @@ namespace Encheres.Services
             }
             return result;
         }
+        #endregion
     }
 }

@@ -25,7 +25,6 @@ namespace Encheres.VuesModeles
         {
             CommandeButtonAuthentification = new Command(ActionPageAuthentification);
         }
-
         #endregion
 
         #region Getters/Setters
