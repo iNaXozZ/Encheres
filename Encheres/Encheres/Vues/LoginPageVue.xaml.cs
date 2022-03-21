@@ -25,5 +25,10 @@ namespace Encheres.Vues
         {
             Navigation.PushAsync(new ListeEnchereEnCoursVue());
         }
+
+        private void OnClickInscription(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new InscriptionPageVue());
+        }
     }
 }

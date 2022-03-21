@@ -5,11 +5,11 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
             <Label Text="{Binding MonEnchere.LeProduit.Nom}"
-                   FontAttributes="Bold,Italic"
+                   FontAttributes="Bold"
                    FontSize="20"
                    Margin="20"
                    HorizontalOptions="Center"
-                   TextColor="Black"/>
+                   TextColor="CadetBlue"/>
 
             <Frame
                 HeightRequest="360" WidthRequest="260"
@@ -26,9 +26,9 @@
                 TextColor="Black"
                 HorizontalOptions="CenterAndExpand" />
             <Label  Text="{Binding MonEnchere.Datefin, StringFormat='Date Fin: {0}'}"
-                TextColor="Black"
+                TextColor="IndianRed"
                 HorizontalOptions="CenterAndExpand" />
-            <Label Text="{Binding }" />
+            <Button Text="Enchère" BackgroundColor="IndianRed" CornerRadius="10" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

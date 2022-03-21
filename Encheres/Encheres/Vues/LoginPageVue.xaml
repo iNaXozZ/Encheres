@@ -39,12 +39,14 @@
                     <RowDefinition Height="*"/>
 
                 </Grid.RowDefinitions>
-                <Label Text="Page d'inscription" FontSize="20" HorizontalTextAlignment="Center" TextColor="#3897F0"/>
+                <Label Text="Page de connexion" FontSize="20" HorizontalTextAlignment="Center" TextColor="#3897F0"/>
 
                 <Image Source="encheres.jpg" HeightRequest="110" VerticalOptions="EndAndExpand"/>
                 <Entry Grid.Row="1" Placeholder="Email" Text="{Binding Email}" PlaceholderColor="#bababa" FontSize="16"/>
                 <Entry Grid.Row="2" Placeholder="Mot de passe" Text="{Binding Password}" PlaceholderColor="#bababa" FontSize="16"/>
-
+                <StackLayout Grid.Row="5">
+                    <Button Text="S'inscrire" BackgroundColor="#3897F0" TextColor="White" Margin="20,0,25,0" Clicked="OnClickInscription" CornerRadius="10" />
+                </StackLayout>
             </Grid>
             <StackLayout Grid.Row="2" BackgroundColor="White">
                 <Grid Grid.Row="5">
