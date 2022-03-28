@@ -3,6 +3,7 @@ using Encheres.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Encheres.VuesModeles
@@ -15,6 +16,8 @@ namespace Encheres.VuesModeles
         private int _tempsRestantHeures;
         private int _tempsRestantMinutes;
         private int _tempsRestantSecondes;
+        private Encherir _prixActuel;
+        private readonly Api _apiServices = new Api();
         #endregion
 
         #region Constructeur
@@ -23,6 +26,7 @@ namespace Encheres.VuesModeles
 
             _monEnchere = param;
             this.GetTimerRemaining(param.Datefin);
+            this.GetPrixActuelEnchere();
         }
         #endregion
 
@@ -57,6 +61,11 @@ namespace Encheres.VuesModeles
             get { return _tempsRestantSecondes; }
             set { SetProperty(ref _tempsRestantSecondes, value); }
         }
+        public Encherir PrixActuel
+        {
+            get { return _prixActuel; }
+            set { SetProperty(ref _prixActuel, value); }
+        }
         #endregion
 
         #region Méthodes
@@ -76,6 +85,18 @@ namespace Encheres.VuesModeles
                     TempsRestantMinutes = tmps.TempsRestant.Minutes;
 
                     TempsRestantSecondes = tmps.TempsRestant.Seconds;
+                }
+            });
+        }
+
+        public void GetPrixActuelEnchere()
+        {
+            Task.Run(async () =>
+            {
+                while (true)
+                {
+                    PrixActuel = await _apiServices.GetOneAsyncByID<Encherir>("api/getActualPrice", Encherir.CollClasse, MonEnchere.Id.ToString());
+                    Thread.Sleep(2000);
                 }
             });
         }

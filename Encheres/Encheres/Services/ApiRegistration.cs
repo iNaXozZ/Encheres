@@ -11,6 +11,12 @@ namespace Encheres.Services
     class ApiRegistration
     {
         #region Methodes
+        /// <summary>
+        /// Cette méthode inscrit via un formulaire de champs, un utilisateur dans la BDD
+        /// </summary>
+        /// <param name="unUser">Correspond aux éléments récupérés d'un object de la classe User</param>
+        /// <param name="paramUrl">Correspond à l'adresse de l'API</param>
+        /// <returns></returns>
         public async Task<bool> PostRegistrationAsync(User unUser, string paramUrl)
         {
 

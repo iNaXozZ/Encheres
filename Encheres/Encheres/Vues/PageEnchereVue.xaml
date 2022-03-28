@@ -28,7 +28,7 @@
                    TextTransform="Uppercase"
                    FontAttributes="Bold"
                    FontSize="20"/>
-            
+
             <Label Text="{Binding MonEnchere.Datedebut, StringFormat='Date Début: {0}'}"
                 TextColor="Black"
                 HorizontalOptions="CenterAndExpand" />
@@ -50,8 +50,11 @@
                     <Label Text="{Binding TempsRestantSecondes, StringFormat='{0} S'}" FontSize="16" FontAttributes="Bold" TextColor="IndianRed" HorizontalOptions="End"/>
                 </StackLayout>
             </StackLayout>
+            <Frame BorderColor="CornflowerBlue" CornerRadius="10" HasShadow="True" >
+                <Label Text="{Binding PrixActuel.PrixEnchere, StringFormat='Prix : {0}€ '}" TextColor="CadetBlue" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold"/>
+            </Frame>
             <StackLayout >
-                <Button Text="Enchère" BackgroundColor="#3897F0" TextColor="White" Margin="20,0,25,0" CornerRadius="10" />
+                <Button Text="Enchérir" BorderWidth="2"  CornerRadius="10" Margin="0,20,0,16" HorizontalOptions="Center" BorderColor="IndianRed" BackgroundColor="White" TextColor="IndianRed"/>
             </StackLayout>
             <Grid Grid.Row="5">
                 <Grid.ColumnDefinitions>
@@ -62,7 +65,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Button Grid.Row="3" Text="Retour" BackgroundColor="CadetBlue" TextColor="White" Margin="20,0,25,0" Clicked="OnClickEncheresEnCours" CornerRadius="10" />
+                <Button Grid.Row="1" Text="Retour" BackgroundColor="CadetBlue" TextColor="White" Margin="20,0,25,0" Clicked="OnClickEncheresEnCours" CornerRadius="10" />
+                <Button Grid.Row="1" Text="Voir" BackgroundColor="Gray" TextColor="White" Margin="20,0,25,0" CornerRadius="10" Grid.Column="2"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

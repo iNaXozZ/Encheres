@@ -48,13 +48,9 @@ namespace Encheres.Services
         ///  </summary>
         ///  <typeparam name="T">la classe concernée</typeparam>
         ///  <param name="paramUrl">l'adresse de l'API</param>
-        ///  <param name="collectionReturn">la collection de classe concernee</param>
-        /// <param name="parameters">Dictionnary with Key = param name  and Value = param value</param>
-        ///  public async void GetListe()
-        /// {
-        /// MaListeClients = await _apiServices.GetAllAsync<Client>("clients", Client.CollClasse);
-        /// }
-        ///  <returns>la liste des occurences</returns>
+        ///  <param name="param">la collection de classe concernee</param>
+        /// <param name="param2">correspond à l'id de l'objet
+        ///  <returns>la liste des occurences selon l'id  du type de l'enchère</returns>
         public async Task<ObservableCollection<T>> GetAllAsync2<T>(string paramUrl, List<T> param, object param2)
         {
 
@@ -75,6 +71,45 @@ namespace Encheres.Services
                 return null;
             }
         }
+
+        ///  <summary>
+        ///  Cette methode est générique
+        ///  Cette méthode permet de recuperer la liste de toutes les occurences de la table.
+        ///
+        ///  </summary>
+        ///  <typeparam name="T">la classe concernée</typeparam>
+        ///  <param name="paramUrl">l'adresse de l'API</param>
+        ///  <param name="paramId">Correspond à l'Id de l'object</param>
+        /// <param name="param2">correspond à l'id de l'objet
+        ///  <returns>la liste des occurences selon l'id  du type de l'enchère</returns>
+        public async Task<T> GetOneAsyncByID<T>(string paramUrl, List<T> param, string paramId)
+        {
+
+
+            try
+            {
+                string jsonString = @"{'Id':'" + paramId + "'}";
+                JObject getResult = JObject.Parse(jsonString);
+                var clientHttp = new HttpClient();
+                var jsonContent = new StringContent(getResult.ToString(), Encoding.UTF8, "application/json");
+                var response = await clientHttp.PostAsync(Constantes.BaseApiAddress + paramUrl, jsonContent);
+                var json = await response.Content.ReadAsStringAsync();
+                T res = JsonConvert.DeserializeObject<T>(json);
+                return res;
+            }
+            catch (Exception)
+            {
+                return default(T);
+            }
+        }
+
+        /// <summary>
+        /// Cette méthode permet d'inscrire des éléments dans la BDD
+        /// </summary>
+        /// <typeparam name="T">Correspond à la classe concernée</typeparam>
+        /// <param name="param"></param>
+        /// <param name="paramUrl">Correspond à l'adresse de l'API</param>
+        /// <returns>L'inscription de l'object dans la BDD</returns>
         public async Task<bool> PostAsync<T>(T param, string paramUrl)
         {
 
