@@ -20,5 +20,10 @@ namespace Encheres.Vues
             InitializeComponent();
             BindingContext = new PageEnchereVueModele(param);
         }
+
+        private void OnClickEncheresEnCours(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ListeEnchereEnCoursVue());
+        }
     }
 }

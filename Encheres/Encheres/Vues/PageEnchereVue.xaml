@@ -7,12 +7,12 @@
             <Label Text="{Binding MonEnchere.LeProduit.Nom}"
                    FontAttributes="Bold"
                    FontSize="20"
-                   Margin="20"
+                   Margin="16"
                    HorizontalOptions="Center"
                    TextColor="CadetBlue"/>
 
             <Frame
-                HeightRequest="360" WidthRequest="260"
+                HeightRequest="260" WidthRequest="160"
                 BackgroundColor="white" Padding="0"
                 HasShadow="True" Margin="10" CornerRadius="10"
                 HorizontalOptions="CenterAndExpand">
@@ -22,13 +22,48 @@
                            Aspect="AspectFill"/>
                 </StackLayout>
             </Frame>
+            <Label Text="{Binding MonEnchere.LeMagasin.Nom}"
+                TextColor="CadetBlue"
+                HorizontalOptions="CenterAndExpand"
+                   TextTransform="Uppercase"
+                   FontAttributes="Bold"
+                   FontSize="20"/>
+            
             <Label Text="{Binding MonEnchere.Datedebut, StringFormat='Date Début: {0}'}"
                 TextColor="Black"
                 HorizontalOptions="CenterAndExpand" />
-            <Label  Text="{Binding MonEnchere.Datefin, StringFormat='Date Fin: {0}'}"
-                TextColor="IndianRed"
-                HorizontalOptions="CenterAndExpand" />
-            <Button Text="Enchère" BackgroundColor="IndianRed" CornerRadius="10" />
+
+            <StackLayout Orientation="Horizontal"  Grid.Row="1" HorizontalOptions="CenterAndExpand" Spacing="10">
+                <StackLayout>
+                    <Label Text="Temps restant : " FontSize="16" FontAttributes="Bold" TextColor="IndianRed" HorizontalOptions="End" />
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="{Binding TempsRestantJour, StringFormat='{0} J'}" FontSize="16" FontAttributes="Bold" TextColor="IndianRed" HorizontalOptions="End"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="{Binding TempsRestantHeures, StringFormat='{0} H'}" FontSize="16" FontAttributes="Bold" TextColor="IndianRed" HorizontalOptions="End"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="{Binding TempsRestantMinutes, StringFormat='{0} Min'}" FontSize="16" FontAttributes="Bold" TextColor="IndianRed" HorizontalOptions="End"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="{Binding TempsRestantSecondes, StringFormat='{0} S'}" FontSize="16" FontAttributes="Bold" TextColor="IndianRed" HorizontalOptions="End"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout >
+                <Button Text="Enchère" BackgroundColor="#3897F0" TextColor="White" Margin="20,0,25,0" CornerRadius="10" />
+            </StackLayout>
+            <Grid Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="3" Text="Retour" BackgroundColor="CadetBlue" TextColor="White" Margin="20,0,25,0" Clicked="OnClickEncheresEnCours" CornerRadius="10" />
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

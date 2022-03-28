@@ -14,12 +14,13 @@ namespace Encheres.Modeles
         private DateTime _datefin;
         private Produit _leProduit;
         private TypeEnchere _leTypeEnchere;
+        private Magasin _leMagasin;
 
         #endregion
 
         #region Constructeurs
 
-        public Enchere(int id,  Produit leProduit, DateTime datedebut, DateTime datefin, TypeEnchere leTypeEnchere)
+        public Enchere(int id,  Produit leProduit, DateTime datedebut, DateTime datefin, TypeEnchere leTypeEnchere, Magasin leMagasin)
         {
             Enchere.CollClasse.Add(this);
             this.id = id;
@@ -27,6 +28,7 @@ namespace Encheres.Modeles
             this._datedebut = datedebut;
             this._datefin = datefin;
             this._leTypeEnchere = leTypeEnchere;
+            _leMagasin = leMagasin;
         }
 
         #endregion
@@ -39,6 +41,7 @@ namespace Encheres.Modeles
         public DateTime Datedebut { get => _datedebut; set => _datedebut = value; }
         public DateTime Datefin { get => _datefin; set => _datefin = value; }
         public TypeEnchere LeTypeEnchere { get => _leTypeEnchere; set => _leTypeEnchere = value; }
+        public Magasin LeMagasin { get => _leMagasin; set => _leMagasin = value; }
         #endregion
 
         #region Methodes
