@@ -14,16 +14,22 @@ namespace Encheres.Vues
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageEnchereVue : ContentPage
     {
-
+        Enchere _monEnchere;
         public PageEnchereVue(Enchere param)
         {
             InitializeComponent();
             BindingContext = new PageEnchereVueModele(param);
+            _monEnchere = param;
         }
 
         private void OnClickEncheresEnCours(object sender, EventArgs e)
         {
             Navigation.PushAsync(new ListeEnchereEnCoursVue());
+        }
+
+        private void OnClickVoirDernieresEncheres(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new RegistreEnchereVue(_monEnchere));
         }
     }
 }

@@ -96,7 +96,8 @@ namespace Encheres.VuesModeles
                 while (true)
                 {
                     PrixActuel = await _apiServices.GetOneAsyncByID<Encherir>("api/getActualPrice", Encherir.CollClasse, MonEnchere.Id.ToString());
-                    Thread.Sleep(2000);
+                    Encherir.CollClasse.Clear();
+                    Thread.Sleep(10000);
                 }
             });
         }

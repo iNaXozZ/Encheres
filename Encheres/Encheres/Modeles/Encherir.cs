@@ -15,19 +15,20 @@ namespace Encheres.Modeles
         private float _prixEnchere;
         private int _idUser;
         private int _idEnchere;
+        private string _pseudo;
 
         #endregion
 
         #region Constructeurs
 
-        public Encherir(Enchere laEnchere, int id, float prixEnchere, int idUser, int idEnchere)
+        public Encherir( int id, float prixEnchere, int idUser, int idEnchere, string pseudo)
         {
             Encherir.CollClasse.Add(this);
-            //this.LaEnchere = laEnchere;
             Id = id;
             PrixEnchere = prixEnchere;
             IdUser = idUser;
             IdEnchere = idEnchere;
+            Pseudo = pseudo;
         }
 
 
@@ -41,6 +42,7 @@ namespace Encheres.Modeles
         public float PrixEnchere { get => _prixEnchere; set => _prixEnchere = value; }
         public int IdUser { get => _idUser; set => _idUser = value; }
         public int IdEnchere { get => _idEnchere; set => _idEnchere = value; }
+        public string Pseudo { get => _pseudo; set => _pseudo = value; }
         #endregion
 
         #region Methodes
