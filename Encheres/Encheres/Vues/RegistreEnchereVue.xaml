@@ -40,7 +40,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Button Grid.Row="3" Text="Retour" BackgroundColor="CadetBlue" TextColor="White" Margin="20,0,25,0"  CornerRadius="10" />
+                    <Button Grid.Row="3" Text="Retour" BackgroundColor="CadetBlue" TextColor="White" Margin="20,0,25,0"  CornerRadius="10" Clicked="OnClickRetourPageEnchere" />
                 </Grid>
             </StackLayout>
         </StackLayout>

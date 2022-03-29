@@ -58,23 +58,23 @@ namespace Encheres.VuesModeles
         }
         public async void GetListeEncheresEnCoursTypeClassique(int id)
         {
-            
-            MaListeEncheresEnCoursTypeClassique = await _apiServices.GetAllAsync2<Enchere>
-                ("api/getEncheresEnCours", Enchere.CollClasse, id);
+
+            MaListeEncheresEnCoursTypeClassique = await _apiServices.GetAllAsyncByID<Enchere>
+                ("api/getEncheresEnCours", Enchere.CollClasse, "IdTypeEnchere", id);
             Enchere.CollClasse.Clear();
         }
         public async void GetListeEncheresEnCoursTypeInverse(int id)
         {
             
-            MaListeEncheresEnCoursTypeInverse = await _apiServices.GetAllAsync2<Enchere>
-                ("api/getEncheresEnCours", Enchere.CollClasse, id);
+            MaListeEncheresEnCoursTypeInverse = await _apiServices.GetAllAsyncByID<Enchere>
+                ("api/getEncheresEnCours", Enchere.CollClasse, "IdTypeEnchere", id);
             Enchere.CollClasse.Clear();
         }
         public async void GetListeEncheresEnCoursTypeFlash(int id)
         {
            
-            MaListeEncheresEnCoursTypeFlash = await _apiServices.GetAllAsync2<Enchere>
-                ("api/getEncheresEnCours", Enchere.CollClasse, id);
+            MaListeEncheresEnCoursTypeFlash = await _apiServices.GetAllAsyncByID<Enchere>
+                ("api/getEncheresEnCours", Enchere.CollClasse, "IdTypeEnchere", id);
             Enchere.CollClasse.Clear();
         }
         #endregion

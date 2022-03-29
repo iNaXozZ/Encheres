@@ -53,7 +53,7 @@ namespace Encheres.VuesModeles
                 while (true)
                 {
                     Encherir.CollClasse.Clear();
-                    MaListeDernieresEncheres = await _apiServices.GetAllAsyncByID<Encherir>("api/getLastSixOffer", Encherir.CollClasse, MonEnchere.Id);
+                    MaListeDernieresEncheres = await _apiServices.GetAllAsyncByID<Encherir>("api/getLastSixOffer", Encherir.CollClasse, "Id", MonEnchere.Id);
 
                     Thread.Sleep(18000);
                     
