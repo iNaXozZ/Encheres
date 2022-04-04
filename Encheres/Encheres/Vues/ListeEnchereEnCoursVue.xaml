@@ -11,15 +11,14 @@
                    FontSize="Medium"
                    TextColor="Crimson"
                    FontAttributes="Bold"/>
-            
+
             <Button HorizontalOptions="EndAndExpand"
-                   Text="Déconnexion" 
+                   Text="Retour" 
                     Margin="8,2,2,0"
                    FontAttributes="Bold"
                    FontSize="Medium"
-                   TextColor="Crimson"
+                   TextColor="CadetBlue"
                     Clicked="OnClickVoirTousLesEncheresEnCours"/>
-
 
         </StackLayout>
         <Label Text="Liste des enchères classiques :"

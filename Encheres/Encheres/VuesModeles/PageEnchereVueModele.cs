@@ -24,6 +24,7 @@ namespace Encheres.VuesModeles
         private string _idUser;
         private string _pseudoUser;
         private readonly Api _apiServices = new Api();
+        private bool _boutonEncherirVisible = false;
         #endregion
 
         #region Constructeur
@@ -33,6 +34,7 @@ namespace Encheres.VuesModeles
             _monEnchere = param;
             this.GetTimerRemaining(param.Datefin);
             this.GetPrixActuelEnchere();
+            this.GetBoutonEncherirVisible();
             CommandButtonEnchere= new Command(SetEncherir);
             tmps = new DecompteTimer();
             DateTime datefin = param.Datefin;
@@ -77,6 +79,11 @@ namespace Encheres.VuesModeles
             get { return _prixActuel; }
             set { SetProperty(ref _prixActuel, value); }
         }
+        public bool BoutonEncherirVisible
+        {
+            get { return _boutonEncherirVisible; }
+            set { SetProperty(ref _boutonEncherirVisible, value); }
+        }
 
         public string IdUser { get => _idUser; set => _idUser = value; }
         public string PseudoUser { get => _pseudoUser; set => _pseudoUser = value; }
@@ -104,6 +111,17 @@ namespace Encheres.VuesModeles
             });
         }
 
+        public async void GetBoutonEncherirVisible()
+        {
+            IdUser = await SecureStorage.GetAsync("ID");
+            PseudoUser = await SecureStorage.GetAsync("PSEUDO");
+            
+            if (IdUser != null)
+            {
+                BoutonEncherirVisible = true;
+            }
+
+        }
         public void GetPrixActuelEnchere()
         {
             Task.Run(async () =>

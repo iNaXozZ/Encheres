@@ -32,5 +32,6 @@ namespace Encheres.Vues
             SecureStorage.Remove("PSEUDO");
             Navigation.PushAsync(new LoginPageVue());
         }
+
     }
 }

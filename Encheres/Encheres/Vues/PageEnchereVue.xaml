@@ -57,7 +57,7 @@
                 <Label Text="{Binding PrixActuel.PrixEnchere, StringFormat='Prix : {0}€ '}" TextColor="CadetBlue" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold"/>
             </Frame>
             <StackLayout >
-                <Button Text="Enchérir" BorderWidth="2"  CornerRadius="10" Margin="0,20,0,16" HorizontalOptions="Center" BorderColor="IndianRed" BackgroundColor="White" TextColor="IndianRed" Command="{Binding CommandButtonEnchere}"/>
+                <Button Text="Enchérir" BorderWidth="2"  CornerRadius="10" Margin="0,20,0,16" HorizontalOptions="Center" BorderColor="IndianRed" BackgroundColor="White" TextColor="IndianRed" Command="{Binding CommandButtonEnchere}" IsVisible="{Binding BoutonEncherirVisible}"    />
             </StackLayout>
             <Grid Grid.Row="5">
                 <Grid.ColumnDefinitions>
