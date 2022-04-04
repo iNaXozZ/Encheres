@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace Encheres.VuesModeles
 {
@@ -17,6 +20,10 @@ namespace Encheres.VuesModeles
         private int _tempsRestantMinutes;
         private int _tempsRestantSecondes;
         private Encherir _prixActuel;
+        public DecompteTimer tmps;
+        private string _idUser;
+        private string _pseudoUser;
+        private DecompteTimer _tmps;
         private readonly Api _apiServices = new Api();
         #endregion
 
@@ -27,6 +34,11 @@ namespace Encheres.VuesModeles
             _monEnchere = param;
             this.GetTimerRemaining(param.Datefin);
             this.GetPrixActuelEnchere();
+            CommandButtonEnchere= new Command(SetEncherir);
+            tmps = new DecompteTimer();
+            DateTime datefin = param.Datefin;
+            TimeSpan interval = datefin - DateTime.Now;
+            tmps.Start(interval);
         }
         #endregion
 
@@ -66,6 +78,10 @@ namespace Encheres.VuesModeles
             get { return _prixActuel; }
             set { SetProperty(ref _prixActuel, value); }
         }
+
+        public string IdUser { get => _idUser; set => _idUser = value; }
+        public string PseudoUser { get => _pseudoUser; set => _pseudoUser = value; }
+        public ICommand CommandButtonEnchere { get; }
         #endregion
 
         #region Méthodes
@@ -100,6 +116,39 @@ namespace Encheres.VuesModeles
                     Thread.Sleep(10000);
                 }
             });
+        }
+
+        public async void SetEncherir()
+        {
+            IdUser = await SecureStorage.GetAsync("ID");
+            PseudoUser = await SecureStorage.GetAsync("PSEUDO");
+
+                    // Ajout condition que si l'utilisateur est différent de celui qui a enchéris et que le timer est supérieur à 0, grâce au bouton,
+                    // l'enchère se mettra dans la BDD et l'enchère sera validée.
+                    if (PrixActuel != null && PrixActuel.Id != int.Parse(IdUser)&& tmps.TempsRestant > TimeSpan.Zero)
+                    {
+                        int resultatEncherir = await _apiServices.PostAsync<Encherir>(new Encherir(0,(PrixActuel.PrixEnchere +1), int.Parse(IdUser), MonEnchere.Id, PseudoUser), "api/postEncherir");
+                        Encherir.CollClasse.Clear();
+                        Thread.Sleep(3000);
+                        await Application.Current.MainPage.DisplayAlert("Succès ✔️ ", "Vous avez enchéris avec succès", "OK");
+                    }
+                    // Ajout condition dans le cas où si la personne a enchéris, elle ne pourra pas enchérir sur elle-même
+                    if (PrixActuel != null && PrixActuel.Id == int.Parse(IdUser) && tmps.TempsRestant > TimeSpan.Zero) 
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Echec ❌ ", "Vous avez déjà enchéris, attendez qu'une autre personne enchérisse.", "OK");
+                    
+                    }
+                    //Ajout condition que si l'enchère est terminée, la personne ne pourra pas enchérir et lui enverra un message d'erreur
+                    if (PrixActuel != null && PrixActuel.Id != int.Parse(IdUser) && tmps.TempsRestant <= TimeSpan.Zero )
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Echec ❌ ", "Vous ne pouvez plus réenchérir, l'enchère est terminée.", "OK");
+                    }
+                    // Si tout autre problème, Affichage d'un message d'erreur
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Echec ❌ ", "Il y a eu un problème avec votre enchère", "OK");
+                    }
+
         }
         #endregion
     }

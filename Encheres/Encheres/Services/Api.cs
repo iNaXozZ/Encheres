@@ -110,23 +110,23 @@ namespace Encheres.Services
         /// <param name="param"></param>
         /// <param name="paramUrl">Correspond à l'adresse de l'API</param>
         /// <returns>L'inscription de l'object dans la BDD</returns>
-        public async Task<bool> PostAsync<T>(T param, string paramUrl)
+        public async Task<int> PostAsync<T>(T param, string paramUrl)
         {
 
             var jsonstring = JsonConvert.SerializeObject(param);
-
+            int id;
             try
             {
                 var client = new HttpClient();
                 var jsonContent = new StringContent(jsonstring, Encoding.UTF8, "application/json");
                 var response = await client.PostAsync(Constantes.BaseApiAddress + paramUrl, jsonContent);
                 var content = await response.Content.ReadAsStringAsync();
-                var result = content == "OK" ? true : false;
+                var result = int.TryParse(content, out id) ? id : 0;
                 return result;
             }
             catch (Exception ex)
             {
-                return false;
+                return 0 ;
             }
         }
 

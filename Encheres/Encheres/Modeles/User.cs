@@ -9,13 +9,18 @@ namespace Encheres.Modeles
     {
         #region Attributs
         public static List<User> CollClasse = new List<User>();
+        private string _email;
+        private string _photo;
+        private string _password;
+        private string _pseudo;
+        private int _id;
 
         //private ObservableCollection<Encherir> lesEncherir;
         #endregion
 
         #region Constructeurs
 
-       
+
 
         public User(string email, string photo, string password, string pseudo)
         {
@@ -46,11 +51,11 @@ namespace Encheres.Modeles
         #endregion
 
         #region Getters/Setters
-        public int ID { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Pseudo { get; set; }
-        public string Photo { get; set; }
+        public string Email { get => _email; set => _email = value; }
+        public string Photo { get => _photo; set => _photo = value; }
+        public string Password { get => _password; set => _password = value; }
+        public string Pseudo { get => _pseudo; set => _pseudo = value; }
+        public int Id { get => _id; set => _id = value; }
 
         #endregion
 

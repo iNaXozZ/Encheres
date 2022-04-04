@@ -31,5 +31,7 @@ namespace Encheres.Vues
         {
             Navigation.PushAsync(new RegistreEnchereVue(_monEnchere));
         }
+
+     
     }
 }

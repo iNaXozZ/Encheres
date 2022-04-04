@@ -32,6 +32,9 @@
             <Label Text="{Binding MonEnchere.Datedebut, StringFormat='Date Début: {0}'}"
                 TextColor="Black"
                 HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding MonEnchere.LeTypeEnchere.Id, StringFormat='Type Enchère: {0}'}"
+                TextColor="Black"
+                HorizontalOptions="CenterAndExpand" />
 
             <StackLayout Orientation="Horizontal"  Grid.Row="1" HorizontalOptions="CenterAndExpand" Spacing="10">
                 <StackLayout>
@@ -54,7 +57,7 @@
                 <Label Text="{Binding PrixActuel.PrixEnchere, StringFormat='Prix : {0}€ '}" TextColor="CadetBlue" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold"/>
             </Frame>
             <StackLayout >
-                <Button Text="Enchérir" BorderWidth="2"  CornerRadius="10" Margin="0,20,0,16" HorizontalOptions="Center" BorderColor="IndianRed" BackgroundColor="White" TextColor="IndianRed"/>
+                <Button Text="Enchérir" BorderWidth="2"  CornerRadius="10" Margin="0,20,0,16" HorizontalOptions="Center" BorderColor="IndianRed" BackgroundColor="White" TextColor="IndianRed" Command="{Binding CommandButtonEnchere}"/>
             </StackLayout>
             <Grid Grid.Row="5">
                 <Grid.ColumnDefinitions>

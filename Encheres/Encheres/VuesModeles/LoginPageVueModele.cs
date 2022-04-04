@@ -69,14 +69,22 @@ namespace Encheres.VuesModeles
             User.CollClasse.Clear();
             User res = await _apiServicesAuthentification.GetAuthAsync<User>
                    (_email, _password, "api/getUserByMailAndPass");
-            User.CollClasse.Add(res);
             if (res != null)
             {
+                auth = true;
+                Storage.StockerConnexion(res.Id.ToString(), res.Pseudo.ToString());
+                User.CollClasse.Add(res);
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     Application.Current.MainPage = new NavigationPage(new ListeEnchereEnCoursVue());
                 });
             }
+            else
+            {
+                auth = false;
+                await Application.Current.MainPage.DisplayAlert("Erreur de login ❌", "Echec", "OK");
+            }
+            
         }
         #endregion
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,19 +17,18 @@ namespace Encheres.Modeles
         private int _idUser;
         private int _idEnchere;
         private string _pseudo;
-
         #endregion
 
         #region Constructeurs
 
-        public Encherir( int id, float prixEnchere, int idUser, int idEnchere, string pseudo)
+        public Encherir(int id, float prixEnchere, int idUser, int idEnchere, string pseudo)
         {
             Encherir.CollClasse.Add(this);
             Id = id;
             PrixEnchere = prixEnchere;
             IdUser = idUser;
             IdEnchere = idEnchere;
-            Pseudo = pseudo;
+            _pseudo = pseudo;
         }
 
 
@@ -40,6 +40,7 @@ namespace Encheres.Modeles
         //internal User LeUser { get => leUser; set => leUser = value; }
         public int Id { get => _id; set => _id = value; }
         public float PrixEnchere { get => _prixEnchere; set => _prixEnchere = value; }
+        
         public int IdUser { get => _idUser; set => _idUser = value; }
         public int IdEnchere { get => _idEnchere; set => _idEnchere = value; }
         public string Pseudo { get => _pseudo; set => _pseudo = value; }

@@ -43,11 +43,11 @@ namespace Encheres.VuesModeles
                 ("api/getProduit", Produit.CollClasse);
         }
 
-        public async void PostProduit(Produit unProduit)
+        /*public async void PostProduit(Produit unProduit)
         {
             Resultat =  await _apiServices.PostAsync<Produit>
                 (unProduit,"api/postProduit");
-        }
+        }*/
         #endregion
 
     }
