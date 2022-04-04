@@ -10,15 +10,6 @@ namespace Encheres.Services
 {
     class ApiRegistration
     {
-        #region Attributs
-
-        private string _message;
-        #endregion
-
-        #region Getters/Setters
-        public string Message { get => _message; set => _message = value; }
-        #endregion
-
         #region Methodes
         /// <summary>
         /// Cette méthode inscrit via un formulaire de champs, un utilisateur dans la BDD
@@ -36,7 +27,6 @@ namespace Encheres.Services
                 var jsonContent = new StringContent(jsonstring, Encoding.UTF8, "application/json");
                 var response = await client.PostAsync(Constantes.BaseApiAddress + paramUrl, jsonContent);
                 var content = await response.Content.ReadAsStringAsync();
-                _message = content;
                 return true;
             }
             catch (Exception ex)
