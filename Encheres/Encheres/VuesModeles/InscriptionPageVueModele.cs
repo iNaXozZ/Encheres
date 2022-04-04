@@ -114,13 +114,14 @@ namespace Encheres.VuesModeles
                     }
                     else
                     {
+                        auth = false;
                         await App.Current.MainPage.DisplayAlert("Erreur", "Veuillez Revoir les vos champs", "OK");
                     }
 
                 }
                 else
                 {
-                    auth = false;
+                    await App.Current.MainPage.DisplayAlert("Echec", "Problème de synchronisation avec le serveur ? ", "OK");
                 }
             });
 
