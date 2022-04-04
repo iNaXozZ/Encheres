@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -26,9 +26,11 @@ namespace Encheres.Vues
             Navigation.PushAsync(new PageEnchereVue(current));
         }
 
-        private void OnClickVoirTousLesEncheresEnCours(object sender, EventArgs e)
+        private  void OnClickVoirTousLesEncheresEnCours(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new ListeTousLesEncheresEnCours());
+            SecureStorage.Remove("ID");
+            SecureStorage.Remove("PSEUDO");
+            Navigation.PushAsync(new LoginPageVue());
         }
     }
 }

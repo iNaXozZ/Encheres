@@ -13,11 +13,11 @@
                    FontAttributes="Bold"/>
             
             <Button HorizontalOptions="EndAndExpand"
-                   Text="Voir" 
+                   Text="Déconnexion" 
                     Margin="8,2,2,0"
                    FontAttributes="Bold"
                    FontSize="Medium"
-                   TextColor="CadetBlue"
+                   TextColor="Crimson"
                     Clicked="OnClickVoirTousLesEncheresEnCours"/>
 
 

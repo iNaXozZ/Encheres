@@ -23,7 +23,6 @@ namespace Encheres.VuesModeles
         public DecompteTimer tmps;
         private string _idUser;
         private string _pseudoUser;
-        private DecompteTimer _tmps;
         private readonly Api _apiServices = new Api();
         #endregion
 
