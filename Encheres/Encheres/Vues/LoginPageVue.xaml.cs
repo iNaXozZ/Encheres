@@ -30,5 +30,10 @@ namespace Encheres.Vues
         {
             Navigation.PushAsync(new InscriptionPageVue());
         }
+
+        private void Email_Unfocused(object sender, FocusEventArgs e)
+        {
+            EntryPassword.Focus();
+        }
     }
 }

@@ -43,9 +43,9 @@
                 <Label Text="Page d'inscription" FontSize="20" HorizontalTextAlignment="Center" TextColor="#3897F0"/>
 
                 <Image Source="encheres.jpg" HeightRequest="110" VerticalOptions="EndAndExpand"/>
-                <Entry Grid.Row="1" Placeholder="Pseudo" Text="{Binding Pseudo}" PlaceholderColor="#bababa" FontSize="16"/>
-                <Entry Grid.Row="2" Placeholder="Email" Text="{Binding Email}" PlaceholderColor="#bababa" FontSize="16"/>
-                <Entry Grid.Row="3" Placeholder="Mot de passe" Text="{Binding Password}" PlaceholderColor="#bababa" FontSize="16"/>
+                <Entry x:Name="EntryPseudo" Unfocused="EntryPseudo_Unfocused" Grid.Row="1" Placeholder="Pseudo" Text="{Binding Pseudo}" PlaceholderColor="#bababa" FontSize="16"/>
+                <Entry x:Name="EntryEmail" Unfocused="EntryEmail_Unfocused" Grid.Row="2" Placeholder="Email" Text="{Binding Email}" PlaceholderColor="#bababa" FontSize="16"/>
+                <Entry x:Name="EntryPassword" Grid.Row="3" Placeholder="Mot de passe" Text="{Binding Password}" PlaceholderColor="#bababa" FontSize="16"/>
                 <Entry Grid.Row="4" Placeholder="Photo" Text="{Binding Photo}" PlaceholderColor="#bababa" FontSize="16"/>
                
             </Grid>

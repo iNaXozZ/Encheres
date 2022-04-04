@@ -26,6 +26,14 @@ namespace Encheres.Vues
             Navigation.PushAsync(new LoginPageVue());
         }
 
-        
+        private void EntryPseudo_Unfocused(object sender, FocusEventArgs e)
+        {
+            EntryEmail.Focus();
+        }
+
+        private void EntryEmail_Unfocused(object sender, FocusEventArgs e)
+        {
+            EntryPassword.Focus();
+        }
     }
 }
