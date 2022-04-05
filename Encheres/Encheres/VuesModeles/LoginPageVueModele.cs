@@ -76,7 +76,7 @@ namespace Encheres.VuesModeles
                 User.CollClasse.Add(res);
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    Application.Current.MainPage = new NavigationPage(new ListeEnchereEnCoursVue());
+                    Application.Current.MainPage = new NavigationPage(new PageProfilVue());
                 });
             }
             else
