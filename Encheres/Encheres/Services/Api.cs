@@ -82,7 +82,7 @@ namespace Encheres.Services
         ///  <param name="paramId">Correspond à l'Id de l'object</param>
         /// <param name="param2">correspond à l'id de l'objet
         ///  <returns>la liste des occurences selon l'id  du type de l'enchère</returns>
-        public async Task<T> GetOneAsyncByID<T>(string paramUrl, List<T> param, string paramId)
+        public async Task<T> GetOneAsyncByID<T>(string paramUrl, List<T> param, object paramId)
         {
 
 

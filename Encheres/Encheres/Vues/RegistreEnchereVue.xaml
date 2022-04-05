@@ -31,7 +31,13 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
                 </Frame>
-                <Grid Grid.Row="5">
+                <StackLayout IsVisible="{Binding GagnantIsVisible}">
+                    <Label Text=" Le gagnant de cette enchère est :" TextColor="CadetBlue" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold" Margin="10" />
+                    <Frame BorderColor="Crimson" CornerRadius="10" HasShadow="True" >
+                        <Label Text="{Binding UnUser.Pseudo, StringFormat=' 🎉🎊🎉 {0} 🎉🎊🎉'}" TextColor="CornflowerBlue" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold"/>
+                    </Frame>
+                </StackLayout>
+                <Grid Grid.Row="4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
@@ -40,7 +46,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Button Grid.Row="3" Text="Retour" BackgroundColor="CadetBlue" TextColor="White" Margin="20,0,25,0"  CornerRadius="10" Clicked="OnClickRetourPageEnchere" />
+                    <Button Grid.Row="2" Text="Retour" BackgroundColor="CadetBlue" TextColor="White" Margin="20,0,25,0"  CornerRadius="10" Clicked="OnClickRetourPageEnchere" />
                 </Grid>
             </StackLayout>
         </StackLayout>
