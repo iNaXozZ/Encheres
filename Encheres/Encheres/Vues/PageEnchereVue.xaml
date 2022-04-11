@@ -67,7 +67,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Entry x:Name="EntryMontant" Grid.Row="1" Placeholder="Mettre un montant"  Text="{Binding Montant}" PlaceholderColor="#bababa" FontSize="16" Keyboard="Numeric"/>
+                        <Entry x:Name="EntryMontant" Grid.Row="1" Placeholder="Mettre un montant"  Text="{Binding Montant}" PlaceholderColor="#bababa" FontSize="16" Keyboard="Numeric" IsVisible="{Binding BoutonEncherirVisible}" />
                         <Button  Grid.Row="1" Text="Enchérir" BorderWidth="2"  CornerRadius="10" Margin="0,20,0,16" HorizontalOptions="Center" BorderColor="IndianRed" BackgroundColor="White" TextColor="IndianRed" Command="{Binding CommandButtonEnchere}" IsVisible="{Binding BoutonEncherirVisible}"  Grid.Column="2"  />
                     </Grid>
                 </StackLayout>
