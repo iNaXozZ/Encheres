@@ -14,6 +14,7 @@ namespace Encheres.Vues
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListeEnchereEnCoursVue : ContentPage
     {
+        private string _idUser;
         public ListeEnchereEnCoursVue()
         {
             InitializeComponent();
@@ -26,10 +27,18 @@ namespace Encheres.Vues
             Navigation.PushAsync(new PageEnchereVue(current));
         }
 
-        private  void OnClickRetourPageProfil(object sender, EventArgs e)
+        private async void OnClickRetourPageProfil(object sender, EventArgs e)
         {
-            
-            Navigation.PushAsync(new PageProfilVue());
+            _idUser = await  SecureStorage.GetAsync("ID");
+            if (_idUser != null)
+            {
+                await Navigation.PushAsync(new PageProfilVue());
+            }
+            else
+            {
+                await Navigation.PushAsync(new LoginPageVue());
+            }
+                
         }
 
     }
