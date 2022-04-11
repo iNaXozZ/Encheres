@@ -18,7 +18,7 @@
                    FontAttributes="Bold"
                    FontSize="Medium"
                    TextColor="CadetBlue"
-                    Clicked="OnClickVoirTousLesEncheresEnCours"/>
+                    Clicked="OnClickRetourPageProfil"/>
 
         </StackLayout>
         <Label Text="Liste des enchères classiques :"

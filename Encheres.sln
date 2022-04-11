@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.32126.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encheres.Android", "Encheres\Encheres.Android\Encheres.Android.csproj", "{0F401851-F36F-4841-B10B-82C7048E0D3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encheres", "Encheres\Encheres\Encheres.csproj", "{180A55C7-EC71-457E-89FC-44B6B64CD45A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encheres", "Encheres\Encheres\Encheres.csproj", "{180A55C7-EC71-457E-89FC-44B6B64CD45A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

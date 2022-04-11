@@ -26,11 +26,10 @@ namespace Encheres.Vues
             Navigation.PushAsync(new PageEnchereVue(current));
         }
 
-        private  void OnClickVoirTousLesEncheresEnCours(object sender, EventArgs e)
+        private  void OnClickRetourPageProfil(object sender, EventArgs e)
         {
-            SecureStorage.Remove("ID");
-            SecureStorage.Remove("PSEUDO");
-            Navigation.PushAsync(new LoginPageVue());
+            
+            Navigation.PushAsync(new PageProfilVue());
         }
 
     }

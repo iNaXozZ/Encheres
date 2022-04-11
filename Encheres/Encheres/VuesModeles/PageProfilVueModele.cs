@@ -1,11 +1,33 @@
-﻿using System;
+﻿using Encheres.Modeles;
+using Encheres.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Essentials;
 
 namespace Encheres.VuesModeles
 {
     class PageProfilVueModele : BaseVueModele
     {
+        private string _idUser;
+        private readonly Api _apiServices = new Api();
+        private User _leUser;
 
+        public PageProfilVueModele()
+        {
+            GetUser();
+        }
+        public string IdUser { get => _idUser; set => _idUser = value; }
+        public User LeUser
+        {
+            get { return _leUser; }
+            set { SetProperty(ref _leUser, value); }
+        }
+
+        public async void GetUser()
+        {
+            IdUser = await SecureStorage.GetAsync("ID");
+            LeUser = await _apiServices.GetOneAsyncByID<User>("api/getUser", User.CollClasse, IdUser.ToString());
+        }
     }
 }

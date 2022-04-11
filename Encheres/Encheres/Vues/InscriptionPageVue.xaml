@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Encheres.Vues.InscriptionPageVue"
              BackgroundColor="White">
-   
+
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
             <OnPlatform.iOS>
@@ -15,51 +15,75 @@
         </OnPlatform>
     </ContentPage.Padding>
     <ContentPage.Content>
-        <Grid BackgroundColor="White">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="50"/>
-            </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="#e6e6e6">
+            <Grid>
+                <StackLayout Padding="0" Margin="0" HorizontalOptions="FillAndExpand">
+                    <Frame HeightRequest="250" BackgroundColor="CadetBlue" Padding="0" Margin="0">
+                    </Frame>
+                </StackLayout>
+                <StackLayout Padding="10" Margin="10,100,20,10" HorizontalOptions="FillAndExpand">
+                    <Frame  BackgroundColor="White" HeightRequest="500" HasShadow="True" Padding="0" Margin="0" CornerRadius="10">
 
-            <StackLayout Orientation="Vertical" HorizontalOptions="Center" 
-                         Margin="0,10,0,0" Grid.Row="0">
-                <Label Text="Romain Tacon APS4"/>
-            </StackLayout>
+                        <StackLayout>
 
 
-            <Grid Grid.Row="1" Margin="20,0,20,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
+                            <StackLayout Margin="10">
+                                <Label Text="S'inscrire" TextColor="#3897F0" HorizontalOptions="CenterAndExpand" FontSize="25" FontAttributes="Bold"/>
+                            </StackLayout>
 
-                </Grid.RowDefinitions>
-                <Label Text="Page d'inscription" FontSize="20" HorizontalTextAlignment="Center" TextColor="#3897F0"/>
+                            <StackLayout Padding="0" Margin="15,10">
+                                <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Entry  x:Name="EntryPseudo" Unfocused="EntryPseudo_Unfocused"  Placeholder="Pseudo" Text="{Binding Pseudo}" PlaceholderColor="#bababa" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="5,0,20,0" TextColor="#1C375C"/>
+                                    </StackLayout>
+                                </Frame>
 
-                <Image Source="encheres.jpg" HeightRequest="110" VerticalOptions="EndAndExpand"/>
-                <Entry x:Name="EntryPseudo" Unfocused="EntryPseudo_Unfocused" Grid.Row="1" Placeholder="Pseudo" Text="{Binding Pseudo}" PlaceholderColor="#bababa" FontSize="16"/>
-                <Entry x:Name="EntryEmail" Unfocused="EntryEmail_Unfocused" Grid.Row="2" Placeholder="Email" Text="{Binding Email}" PlaceholderColor="#bababa" FontSize="16"/>
-                <Entry x:Name="EntryPassword" Grid.Row="3" Placeholder="Mot de passe" Text="{Binding Password}" PlaceholderColor="#bababa" FontSize="16"/>
-                <Entry Grid.Row="4" Placeholder="Photo" Text="{Binding Photo}" PlaceholderColor="#bababa" FontSize="16"/>
-               
+                                <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Entry  x:Name="EntryEmail" Unfocused="EntryEmail_Unfocused" Grid.Row="2" Placeholder="Email" Text="{Binding Email}" PlaceholderColor="#bababa"  FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="5,0,20,0" TextColor="#1C375C" />
+                                    </StackLayout>
+                                </Frame>
+
+                                <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Entry  x:Name="EntryPassword" Grid.Row="2" Placeholder="Mot de passe" Text="{Binding Password}" IsPassword="True" PlaceholderColor="#bababa"  TextColor="#1C375C" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="5,0,20,0" />
+                                    </StackLayout>
+                                </Frame>
+
+                                <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Entry  Placeholder="Photo" Text="{Binding Photo}" PlaceholderColor="#bababa"  TextColor="#1C375C" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="5,0,20,0" />
+                                    </StackLayout>
+                                </Frame>
+
+                                <Button Text="S'inscrire" BackgroundColor="#3897F0" TextColor="White" Margin="20,10,25,0" Command="{Binding CommandeButtonRegistration}" CornerRadius="30" />
+
+                                <StackLayout Margin="0,0,0,0" Padding="0">
+                                    <Grid>
+                                        <BoxView BackgroundColor="DarkGray" HeightRequest="1" WidthRequest="150"  HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        <Frame BackgroundColor="White" HeightRequest="45" WidthRequest="45" CornerRadius="45" HasShadow="False" BorderColor="DarkGray" Margin="0" HorizontalOptions="Center" Padding="0">
+                                            <Label Text="Ou" TextColor="DarkGray" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                        </Frame>
+                                    </Grid>
+                                </StackLayout>
+
+                                <StackLayout >
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Button Text="Retour" BackgroundColor="#3897F0" HorizontalOptions="Center" TextColor="White" Margin="20,0,20,0" Clicked="OnClickRetour" CornerRadius="10"/>
+                                    </Grid>
+                                </StackLayout>
+
+                            </StackLayout>
+
+
+                        </StackLayout>
+
+                    </Frame>
+                </StackLayout>
             </Grid>
-            <StackLayout Grid.Row="2" BackgroundColor="White">
-                <Grid Grid.Row="5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Button Text="Retour" BackgroundColor="#3897F0" TextColor="White" Margin="20,0,20,0" Clicked="OnClickRetour" CornerRadius="10"/>
-                    <Button Text="S'inscrire" BackgroundColor="IndianRed" TextColor="White" Margin="20,0,20,0" Grid.Column="2" Command="{Binding CommandeButtonRegistration}" CornerRadius="10"/>
-                </Grid>
-            </StackLayout>
-        </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

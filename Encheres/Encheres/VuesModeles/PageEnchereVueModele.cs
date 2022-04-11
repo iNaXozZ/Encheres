@@ -25,6 +25,7 @@ namespace Encheres.VuesModeles
         private string _pseudoUser;
         private readonly Api _apiServices = new Api();
         private bool _boutonEncherirVisible = false;
+        private float _montant;
         #endregion
 
         #region Constructeur
@@ -85,6 +86,21 @@ namespace Encheres.VuesModeles
             set { SetProperty(ref _boutonEncherirVisible, value); }
         }
 
+        public float Montant
+        {
+            get
+            {
+                return _montant;
+            }
+            set
+            {
+                if (_montant != value)
+                {
+                    _montant = value;
+                    OnPropertyChanged(nameof(Montant));
+                }
+            }
+        }
         public string IdUser { get => _idUser; set => _idUser = value; }
         public string PseudoUser { get => _pseudoUser; set => _pseudoUser = value; }
         public ICommand CommandButtonEnchere { get; }
@@ -144,10 +160,10 @@ namespace Encheres.VuesModeles
             {
                 this.SetEncherirClassique();
             }
-            /*if (MonEnchere.LeTypeEnchere.Id == 2)
+            if (MonEnchere.LeTypeEnchere.Id == 2)
             {
                 this.SetEncherirInverse();
-            }*/
+            }
 
         }
         public async void SetEncherirClassique()
@@ -160,19 +176,19 @@ namespace Encheres.VuesModeles
             // l'enchère se mettra dans la BDD et l'enchère sera validée.
             if (PrixActuel != null && PrixActuel.Id != int.Parse(IdUser) && tmps.TempsRestant > TimeSpan.Zero)
             {
-                int resultatEncherir = await _apiServices.PostAsync<Encherir>(new Encherir(0, (PrixActuel.PrixEnchere + 1), int.Parse(IdUser), MonEnchere.Id, PseudoUser), "api/postEncherir");
+                int resultatEncherir = await _apiServices.PostAsync<Encherir>(new Encherir(0, Montant, int.Parse(IdUser), MonEnchere.Id, PseudoUser), "api/postEncherir");
                 Encherir.CollClasse.Clear();
                 Thread.Sleep(3000);
                 await Application.Current.MainPage.DisplayAlert("Succès ✔️ ", "Vous avez enchéris avec succès", "OK");
             }
             // Ajout condition dans le cas où si la personne a enchéris, elle ne pourra pas enchérir sur elle-même
-            if (PrixActuel != null && PrixActuel.Id == int.Parse(IdUser) && tmps.TempsRestant > TimeSpan.Zero)
+            else if (PrixActuel != null && PrixActuel.Id == int.Parse(IdUser) && tmps.TempsRestant > TimeSpan.Zero)
             {
                 await Application.Current.MainPage.DisplayAlert("Echec ❌ ", "Vous avez déjà enchéris, attendez qu'une autre personne enchérisse.", "OK");
 
             }
             //Ajout condition que si l'enchère est terminée, la personne ne pourra pas enchérir et lui enverra un message d'erreur
-            if (PrixActuel != null && PrixActuel.Id != int.Parse(IdUser) && tmps.TempsRestant <= TimeSpan.Zero)
+            else if (PrixActuel != null && PrixActuel.Id != int.Parse(IdUser) && tmps.TempsRestant <= TimeSpan.Zero)
             {
                 await Application.Current.MainPage.DisplayAlert("Echec ❌ ", "Vous ne pouvez plus réenchérir, l'enchère est terminée.", "OK");
             }
@@ -183,7 +199,7 @@ namespace Encheres.VuesModeles
             }
         }
 
-        /*public async void SetEncherirInverse()
+        public async void SetEncherirInverse()
         {
             IdUser = await SecureStorage.GetAsync("ID");
             PseudoUser = await SecureStorage.GetAsync("PSEUDO");
@@ -192,13 +208,23 @@ namespace Encheres.VuesModeles
             // l'enchère se mettra dans la BDD et l'enchère sera validée.
             if (PrixActuel != null && tmps.TempsRestant > TimeSpan.Zero)
             {
-                int resultatEncherir = await _apiServices.PostAsync<Encherir>(new Encherir(0, (PrixActuel.PrixEnchere + 1), int.Parse(IdUser), MonEnchere.Id, PseudoUser), "api/postEncherirInverse");
+                int resultatEncherir = await _apiServices.PostAsync<Encherir>(new Encherir(0, Montant, int.Parse(IdUser), MonEnchere.Id, PseudoUser), "api/postEncherirInverse");
                 Encherir.CollClasse.Clear();
                 Thread.Sleep(3000);
                 await Application.Current.MainPage.DisplayAlert("Succès ✔️ ", "Vous avez enchéris avec succès", "OK");
             }
+            //Ajout condition que si l'enchère est terminée, la personne ne pourra pas enchérir et lui enverra un message d'erreur
+            else if (PrixActuel != null && tmps.TempsRestant <= TimeSpan.Zero)
+            {
+                await Application.Current.MainPage.DisplayAlert("Echec ❌ ", "Vous ne pouvez plus réenchérir, l'enchère est terminée.", "OK");
+            }
+            // Si tout autre problème, Affichage d'un message d'erreur
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Echec ❌ ", "Il y a eu un problème avec votre enchère", "OK");
+            }
 
-        }*/
+        }
 
         #endregion
     }
