@@ -60,7 +60,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Button Grid.Row="1" Text="Déco" BackgroundColor="CadetBlue" TextColor="White" Margin="20,0,25,30"  CornerRadius="10" Clicked="OnClickDeconnexion" />
-                    <Button Grid.Row="1" Text="Enchère" BackgroundColor="Gray" TextColor="White" Margin="20,0,25,30"  CornerRadius="10" Grid.Column="2" Clicked="OnClickListeEnchere"/>
+                    <Button Grid.Row="1" Text="Enchères" BackgroundColor="Gray" TextColor="White" Margin="20,0,25,30"  CornerRadius="10" Grid.Column="2" Clicked="OnClickListeEnchere"/>
                 </Grid>
             </StackLayout>
         </ScrollView>
