@@ -68,6 +68,10 @@ namespace Encheres.VuesModeles
         #endregion
 
         #region Méthodes
+
+        /// <summary>
+        /// Cette méthode permet grâce à l'appel de l'API d'afficher le pseudo et le prix de l'enchère des 6 dernières enchérisseurs
+        /// </summary>
         public void AfficherDernieresEncheres()
         {
             Task.Run(async () =>
@@ -83,6 +87,11 @@ namespace Encheres.VuesModeles
             });
         }
 
+        /// <summary>
+        /// Cette méthode permet à la vue d'afficher la frame montrant le gagnant de l'enchère si le timer de l'enchère est à 0.
+        /// Dans le cas où le timer n'est pas terminé, la fonction permet le non affichage de la frame du gagnant.
+        /// </summary>
+        /// <param name="param">Permet de récupérer la DateFin de l'enchère en cours</param>
         public void GetGagnantVisible(Enchere param)
         {
             tmps = new DecompteTimer();
@@ -100,6 +109,9 @@ namespace Encheres.VuesModeles
             }
         }
 
+        /// <summary>
+        /// Cette méthode permet de retourner le Gagnant de l'enchère en cours qui vient de se terminer
+        /// </summary>
         public async void AfficherLeGagnant()
         {
             UnUser = await _apiServices.GetOneAsyncByID<User>("api/getGagnant", User.CollClasse, MonEnchere.Id);
