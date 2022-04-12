@@ -64,21 +64,37 @@ namespace Encheres.VuesModeles
         #endregion
 
         #region Méthodes
+
+        /// <summary>
+        /// Cette méthode permet de valider la connexion d'un utilisateur via l'appel de l'API du serveur.
+        /// </summary>
         public async void ActionPageAuthentification()
         {
+            //Pour éviter d'avoir personne connectée, on supprime l'éventuel utilisateur
             User.CollClasse.Clear();
+
+            //Grâce à l'adresse email et le mot de passe entrés en dans le formulaire, on demande à l'API de vérifier
+            //l'exactitude des informations, de récupérer les données de l'utilisateur.
             User res = await _apiServicesAuthentification.GetAuthAsync<User>
                    (_email, _password, "api/getUserByMailAndPass");
+
+            //Selon le résultat de l'appel de l'API, on valide la connection ou non de l'utilisateur
             if (res != null)
             {
                 auth = true;
+                //On stock l'ID et le Pseudo de l'utilisateur dans le cache de l'application
                 Storage.StockerConnexion(res.Id.ToString(), res.Pseudo.ToString());
                 User.CollClasse.Add(res);
+
+                //On valide la Connexion de l'utilisateur en effectuant le changement de page vers la page de profil
+                //de l'utilisateur
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     Application.Current.MainPage = new NavigationPage(new PageProfilVue());
                 });
             }
+
+            // Si l'API n'a pas validé la connexion de l'utilisateur, on affiche un message d'erreur
             else
             {
                 auth = false;
