@@ -23,7 +23,10 @@ namespace Encheres.VuesModeles
             get { return _leUser; }
             set { SetProperty(ref _leUser, value); }
         }
-
+        
+        /// <summary>
+        /// Cette méthode permet grâce à l'ID de l'utilisateur de récupérer 
+        /// </summary>
         public async void GetUser()
         {
             IdUser = await SecureStorage.GetAsync("ID");

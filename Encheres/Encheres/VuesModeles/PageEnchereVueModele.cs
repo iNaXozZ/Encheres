@@ -127,8 +127,13 @@ namespace Encheres.VuesModeles
             });
         }
 
+        /// <summary>
+        /// Cette méthode permet de d'afficher la fonctionnalité d'enchérir lorsqu'un utilisateur est connecté à l'application.
+        /// Lorsque personne ne s'est connectée à l'application, l'utilisateur ne verra pas la fonctionnalité pour enchérir.
+        /// </summary>
         public async void GetBoutonEncherirVisible()
         {
+            //Récupération de l'id et du pseudo de l'utilisateur qui est stocké dans le cache de l'application (SecureStorage)
             IdUser = await SecureStorage.GetAsync("ID");
             PseudoUser = await SecureStorage.GetAsync("PSEUDO");
             
@@ -138,6 +143,10 @@ namespace Encheres.VuesModeles
             }
 
         }
+
+        /// <summary>
+        /// Cette méthode permet grâce à l'API, de récupérer le prix actuel de l'enchère en cours toutes les X secondes
+        /// </summary>
         public void GetPrixActuelEnchere()
         {
             Task.Run(async () =>
@@ -151,10 +160,11 @@ namespace Encheres.VuesModeles
             });
         }
 
-        public async void SetEncherir()
+        /// <summary>
+        /// Cette méthode permet selon le type de l'enchère, de se diriger vers l'enchérir spécifique à celle-ci.
+        /// </summary>
+        public  void SetEncherir()
         {
-            IdUser = await SecureStorage.GetAsync("ID");
-            PseudoUser = await SecureStorage.GetAsync("PSEUDO");
 
             if (MonEnchere.LeTypeEnchere.Id == 1)
             {
@@ -166,9 +176,13 @@ namespace Encheres.VuesModeles
             }
 
         }
+
+        /// <summary>
+        /// Cette méthode permet d'enchérir pour les enchères classiques.
+        /// </summary>
         public async void SetEncherirClassique()
         {
-
+            //Récupération de l'id et du pseudo de l'utilisateur qui est stocké dans le cache de l'application (SecureStorage)
             IdUser = await SecureStorage.GetAsync("ID");
             PseudoUser = await SecureStorage.GetAsync("PSEUDO");
 
@@ -181,17 +195,20 @@ namespace Encheres.VuesModeles
                 Thread.Sleep(3000);
                 await Application.Current.MainPage.DisplayAlert("Succès ✔️ ", "Vous avez enchéris avec succès", "OK");
             }
+
             // Ajout condition dans le cas où si la personne a enchéris, elle ne pourra pas enchérir sur elle-même
             else if (PrixActuel != null && PrixActuel.Id == int.Parse(IdUser) && tmps.TempsRestant > TimeSpan.Zero)
             {
                 await Application.Current.MainPage.DisplayAlert("Echec ❌ ", "Vous avez déjà enchéris, attendez qu'une autre personne enchérisse.", "OK");
 
             }
+
             //Ajout condition que si l'enchère est terminée, la personne ne pourra pas enchérir et lui enverra un message d'erreur
             else if (PrixActuel != null && PrixActuel.Id != int.Parse(IdUser) && tmps.TempsRestant <= TimeSpan.Zero)
             {
                 await Application.Current.MainPage.DisplayAlert("Echec ❌ ", "Vous ne pouvez plus réenchérir, l'enchère est terminée.", "OK");
             }
+
             // Si tout autre problème, Affichage d'un message d'erreur
             else
             {
@@ -199,8 +216,12 @@ namespace Encheres.VuesModeles
             }
         }
 
+        /// <summary>
+        /// Cette méthode permet d'enchérir pour les enchères inverses
+        /// </summary>
         public async void SetEncherirInverse()
         {
+            //Récupération de l'id et du pseudo de l'utilisateur qui est stocké dans le cache de l'application (SecureStorage)
             IdUser = await SecureStorage.GetAsync("ID");
             PseudoUser = await SecureStorage.GetAsync("PSEUDO");
 
@@ -213,11 +234,13 @@ namespace Encheres.VuesModeles
                 Thread.Sleep(3000);
                 await Application.Current.MainPage.DisplayAlert("Succès ✔️ ", "Vous avez enchéris avec succès", "OK");
             }
+
             //Ajout condition que si l'enchère est terminée, la personne ne pourra pas enchérir et lui enverra un message d'erreur
             else if (PrixActuel != null && tmps.TempsRestant <= TimeSpan.Zero)
             {
                 await Application.Current.MainPage.DisplayAlert("Echec ❌ ", "Vous ne pouvez plus réenchérir, l'enchère est terminée.", "OK");
             }
+
             // Si tout autre problème, Affichage d'un message d'erreur
             else
             {
