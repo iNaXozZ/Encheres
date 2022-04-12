@@ -50,12 +50,21 @@ namespace Encheres.VuesModeles
 
         #endregion
         #region Méthode
+
+        /// <summary>
+        /// Cette méthode permet grâce à l'appel de l'API, de retourner la liste de toutes les enchères effectuées 
+        /// </summary>
         public async void GetListeEncheres()
         {
             MaListeEncheresEnCours = await _apiServices.GetAllAsync<Enchere>
                 ("api/getEncheresEnCours", Enchere.CollClasse);
             Enchere.CollClasse.Clear();
         }
+
+        /// <summary>
+        /// Cette méthode permet de retourner toutes les enchères classiques en cours grâce à l'appel de L'API
+        /// </summary>
+        /// <param name="id">Permet de récupérer les ecnhères selon l'id du type de l'enchère en cours</param>
         public async void GetListeEncheresEnCoursTypeClassique(int id)
         {
 
@@ -63,6 +72,11 @@ namespace Encheres.VuesModeles
                 ("api/getEncheresEnCours", Enchere.CollClasse, "IdTypeEnchere", id);
             Enchere.CollClasse.Clear();
         }
+
+        /// <summary>
+        /// Cette méthode permet de retourner toutes les enchères inverses en cours grâce à l'appel de L'API
+        /// </summary>
+        /// <param name="id">Permet de récupérer les ecnhères selon l'id du type de l'enchère en cours</param>
         public async void GetListeEncheresEnCoursTypeInverse(int id)
         {
             
@@ -70,6 +84,11 @@ namespace Encheres.VuesModeles
                 ("api/getEncheresEnCours", Enchere.CollClasse, "IdTypeEnchere", id);
             Enchere.CollClasse.Clear();
         }
+
+        /// <summary>
+        /// Cette méthode permet de retourner toutes les enchères flashs en cours grâce à l'appel de L'API
+        /// </summary>
+        /// <param name="id">Permet de récupérer les ecnhères selon l'id du type de l'enchère en cours</param>
         public async void GetListeEncheresEnCoursTypeFlash(int id)
         {
            
