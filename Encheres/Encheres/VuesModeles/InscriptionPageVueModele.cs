@@ -15,6 +15,7 @@ namespace Encheres.VuesModeles
        
         #region Attributs
         private readonly ApiRegistration _apiServicesRegistration = new ApiRegistration();
+        private readonly ApiAuthentification _apiServicesAuthentification = new ApiAuthentification();
         private string _pseudo;
         private string _password;
         private string _email;
@@ -117,12 +118,7 @@ namespace Encheres.VuesModeles
                     //On vérifie que l'utilisateur a bien un email, un mot de passe et un pseudo
                     if (unUser.Email != null && unUser.Password != null && unUser.Pseudo != null )
                     {
-                        // Si toutes les conditions sont réunies, on valide l'inscription et la connexion de l'utilisateur
-                        //en le renvoyant sur sa page de profil. A Modif !!!!!
-                        Device.BeginInvokeOnMainThread(() =>
-                        {
-                            Application.Current.MainPage = new NavigationPage(new ListeEnchereEnCoursVue());
-                        });
+                        this.SeConnecter(unUser.Email, unUser.Password);
                     }
 
                     // Si tous les champs ne sont pas remplis, on affiche un message d'erreur lui indiquant qu'il faut revoir ses champs
@@ -142,8 +138,37 @@ namespace Encheres.VuesModeles
                     await App.Current.MainPage.DisplayAlert("Echec", "Problème de synchronisation avec le serveur ? ", "OK");
                 }
             });
-
-            #endregion
+        
         }
+
+        /// <summary>
+        /// /Cette méthode permet la connection de l'utilisateur après que celui-ci s'est inscrit sur l'application 
+        /// </summary>
+        /// <param name="Email">Récupération de l'adresse Email mis en paramètre lors de l'inscription de l'utilsateur</param>
+        /// <param name="Password">Récupération du mot de passe mis en paramètre lors de l'inscription de l'utilsateur</param>
+        public async void SeConnecter(string Email, string Password)
+        {
+            //Grâce à l'adresse email et le mot de passe entrés en dans le formulaire, on demande à l'API de vérifier
+            //l'exactitude des informations, de récupérer les données de l'utilisateur.
+            User res = await _apiServicesAuthentification.GetAuthAsync<User>
+                   (Email, Password, "api/getUserByMailAndPass");
+
+            //Selon le résultat de l'appel de l'API, on valide la connection ou non de l'utilisateur
+            if (res != null)
+            {
+                auth = true;
+                //On stock l'ID et le Pseudo de l'utilisateur dans le cache de l'application
+                Storage.StockerConnexion(res.Id.ToString(), res.Pseudo.ToString());
+                User.CollClasse.Add(res);
+
+                //On valide la Connexion de l'utilisateur en effectuant le changement de page vers la page de profil
+                //de l'utilisateur
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Application.Current.MainPage = new NavigationPage(new PageProfilVue());
+                });
+            }
+        }
+        #endregion
     }
 }
