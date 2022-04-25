@@ -25,7 +25,7 @@ namespace Encheres.VuesModeles
         }
         
         /// <summary>
-        /// Cette méthode permet grâce à l'ID de l'utilisateur de récupérer 
+        /// Cette méthode permet grâce à l'ID de l'utilisateur de récupérer les informations issues de l'utilisateur en appelant l'API
         /// </summary>
         public async void GetUser()
         {
