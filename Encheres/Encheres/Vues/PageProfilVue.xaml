@@ -13,7 +13,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Image Source="{Binding LeUser.PhotoStream}" Aspect="Fill" HeightRequest="200" VerticalOptions="StartAndExpand" BackgroundColor="Azure"/>
+                    <Image Source="{Binding LeUser.PhotoStream}" Aspect="Fill" HeightRequest="200" VerticalOptions="StartAndExpand" BackgroundColor="CadetBlue"/>
                     <Frame Grid.Row="1" HasShadow="True" CornerRadius="10" Margin="20,-50,20,0" Padding="18" HeightRequest="220" VerticalOptions="StartAndExpand">
                         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>

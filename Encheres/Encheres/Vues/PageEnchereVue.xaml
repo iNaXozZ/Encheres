@@ -17,7 +17,7 @@
                     BackgroundColor="white" Padding="0"
                     HasShadow="True" Margin="10" CornerRadius="10"
                     HorizontalOptions="CenterAndExpand">
-                    <StackLayout>
+                    <StackLayout x:Name="Image">
                         <Image Source="{Binding MonEnchere.LeProduit.Photo}"
                                VerticalOptions="FillAndExpand"
                                Aspect="AspectFill"/>
@@ -34,6 +34,9 @@
                     TextColor="Black"
                     HorizontalOptions="CenterAndExpand" />
                 <Label Text="{Binding MonEnchere.LeTypeEnchere.Id, StringFormat='Type Enchère: {0}'}"
+                    TextColor="Black"
+                    HorizontalOptions="CenterAndExpand" />
+                <Label Text="{Binding MonEnchere.Id, StringFormat='Id Enchère: {0}'}"
                     TextColor="Black"
                     HorizontalOptions="CenterAndExpand" />
 

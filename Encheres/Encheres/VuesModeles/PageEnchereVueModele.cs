@@ -36,7 +36,7 @@ namespace Encheres.VuesModeles
             this.GetTimerRemaining(param.Datefin);
             this.GetPrixActuelEnchere();
             this.GetBoutonEncherirVisible();
-            CommandButtonEnchere= new Command(SetEncherir);
+            CommandButtonEnchere = new Command(SetEncherir);
             tmps = new DecompteTimer();
             DateTime datefin = param.Datefin;
             TimeSpan interval = datefin - DateTime.Now;
@@ -136,7 +136,7 @@ namespace Encheres.VuesModeles
             //Récupération de l'id et du pseudo de l'utilisateur qui est stocké dans le cache de l'application (SecureStorage)
             IdUser = await SecureStorage.GetAsync("ID");
             PseudoUser = await SecureStorage.GetAsync("PSEUDO");
-            
+
             if (IdUser != null)
             {
                 BoutonEncherirVisible = true;
@@ -163,7 +163,7 @@ namespace Encheres.VuesModeles
         /// <summary>
         /// Cette méthode permet selon le type de l'enchère, de se diriger vers l'enchérir spécifique à celle-ci.
         /// </summary>
-        public  void SetEncherir()
+        public void SetEncherir()
         {
 
             if (MonEnchere.LeTypeEnchere.Id == 1)
@@ -225,14 +225,20 @@ namespace Encheres.VuesModeles
             IdUser = await SecureStorage.GetAsync("ID");
             PseudoUser = await SecureStorage.GetAsync("PSEUDO");
 
-            // Ajout condition que si le prix de l'enchère est différent de null et que le timer est supérieur à 0, grâce au bouton,
-            // l'enchère se mettra dans la BDD et l'enchère sera validée.
-            if (PrixActuel != null && tmps.TempsRestant > TimeSpan.Zero)
+            // Ajout condition que si le prix de l'enchère est différent de null et que le timer est supérieur à 0 ainsi que le montant inscrit
+            // est supérieur au prix de réserve du produit alors,  grâce au bouton, l'enchère se mettra dans la BDD et l'enchère sera validée.
+            if (PrixActuel != null && Montant > MonEnchere.PrixReserve && tmps.TempsRestant > TimeSpan.Zero)
             {
                 int resultatEncherir = await _apiServices.PostAsync<Encherir>(new Encherir(0, Montant, int.Parse(IdUser), MonEnchere.Id, PseudoUser), "api/postEncherirInverse");
                 Encherir.CollClasse.Clear();
                 Thread.Sleep(3000);
                 await Application.Current.MainPage.DisplayAlert("Succès ✔️ ", "Vous avez enchéris avec succès", "OK");
+            }
+
+            //Ajout condition que si l'enchérir est inférieur au prix de réserve alors il y aura un message d'erreur lui indiquant que son enchérir est pas assez haute
+            else if (PrixActuel != null && Montant < MonEnchere.PrixReserve  && tmps.TempsRestant > TimeSpan.Zero)
+            {
+                await Application.Current.MainPage.DisplayAlert("Echec ❌ ", "Vous enchère est trop basse, veuillez faire une offre plus conséquente", "OK");
             }
 
             //Ajout condition que si l'enchère est terminée, la personne ne pourra pas enchérir et lui enverra un message d'erreur
@@ -248,7 +254,6 @@ namespace Encheres.VuesModeles
             }
 
         }
-
         #endregion
     }
 }
