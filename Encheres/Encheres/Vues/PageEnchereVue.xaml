@@ -12,17 +12,42 @@
                        HorizontalOptions="Center"
                        TextColor="CadetBlue"/>
 
-                <Frame
-                    HeightRequest="260" WidthRequest="160"
-                    BackgroundColor="white" Padding="0"
-                    HasShadow="True" Margin="10" CornerRadius="10"
-                    HorizontalOptions="CenterAndExpand">
-                    <StackLayout x:Name="Image">
-                        <Image Source="{Binding MonEnchere.LeProduit.Photo}"
-                               VerticalOptions="FillAndExpand"
-                               Aspect="AspectFill"/>
-                    </StackLayout>
-                </Frame>
+                <StackLayout>
+                    <RelativeLayout>
+                        <Frame
+                            HeightRequest="260" WidthRequest="160"
+                            BackgroundColor="white" Padding="0"
+                            HasShadow="True" Margin="10" CornerRadius="10"
+                            HorizontalOptions="CenterAndExpand"
+                            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}">
+                            <StackLayout x:Name="StackImg">
+                                    <Image Source="{Binding MonEnchere.LeProduit.Photo}"
+                                   VerticalOptions="FillAndExpand"
+                                   Aspect="AspectFill"/>
+                            </StackLayout>
+                        </Frame>
+                        <StackLayout  HeightRequest="260" WidthRequest="160" HorizontalOptions="CenterAndExpand" IsVisible="{Binding AffichageGrilleVisible}">
+                            <Grid x:Name="GrilleFlash" RowSpacing="0" ColumnSpacing="0" HeightRequest="260" WidthRequest="160" HorizontalOptions="CenterAndExpand" >
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="60" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="60" />
+                                </Grid.RowDefinitions>
+                            </Grid>
+                        </StackLayout>
+                    </RelativeLayout>
+                </StackLayout>
+
                 <Label Text="{Binding MonEnchere.LeMagasin.Nom}"
                     TextColor="CadetBlue"
                     HorizontalOptions="CenterAndExpand"
@@ -30,13 +55,10 @@
                        FontAttributes="Bold"
                        FontSize="20"/>
 
-                <Label Text="{Binding MonEnchere.Datedebut, StringFormat='Date Début: {0}'}"
+                <Label Text="{Binding MonEnchere.Datedebut, StringFormat='Date de début: {0}'}"
                     TextColor="Black"
                     HorizontalOptions="CenterAndExpand" />
                 <Label Text="{Binding MonEnchere.LeTypeEnchere.Id, StringFormat='Type Enchère: {0}'}"
-                    TextColor="Black"
-                    HorizontalOptions="CenterAndExpand" />
-                <Label Text="{Binding MonEnchere.Id, StringFormat='Id Enchère: {0}'}"
                     TextColor="Black"
                     HorizontalOptions="CenterAndExpand" />
 

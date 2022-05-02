@@ -26,6 +26,7 @@ namespace Encheres.VuesModeles
         private readonly Api _apiServices = new Api();
         private bool _boutonEncherirVisible = false;
         private float _montant;
+        private bool _affichageGrilleVisible = false;
         #endregion
 
         #region Constructeur
@@ -41,6 +42,7 @@ namespace Encheres.VuesModeles
             DateTime datefin = param.Datefin;
             TimeSpan interval = datefin - DateTime.Now;
             tmps.Start(interval);
+            this.GetAffichageGrilleVisible();
         }
         #endregion
 
@@ -85,7 +87,11 @@ namespace Encheres.VuesModeles
             get { return _boutonEncherirVisible; }
             set { SetProperty(ref _boutonEncherirVisible, value); }
         }
-
+        public bool AffichageGrilleVisible
+        {
+            get { return _affichageGrilleVisible; }
+            set { SetProperty(ref _affichageGrilleVisible, value); }
+        }
         public float Montant
         {
             get
@@ -140,6 +146,20 @@ namespace Encheres.VuesModeles
             if (IdUser != null)
             {
                 BoutonEncherirVisible = true;
+            }
+
+        }
+
+        /// <summary>
+        /// Cette permet l'affichage de la grille lorsque le type d'enchère est une enchère flash.
+        /// </summary>
+        public void GetAffichageGrilleVisible()
+        {
+            
+
+            if (MonEnchere.LeTypeEnchere.Id == 3)
+            {
+                AffichageGrilleVisible = true;
             }
 
         }

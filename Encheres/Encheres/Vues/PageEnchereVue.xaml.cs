@@ -20,6 +20,7 @@ namespace Encheres.Vues
             InitializeComponent();
             BindingContext = new PageEnchereVueModele(param);
             _monEnchere = param;
+            AfficherGrilleFlash();
         }
 
         private void OnClickEncheresEnCours(object sender, EventArgs e)
@@ -32,6 +33,25 @@ namespace Encheres.Vues
             Navigation.PushAsync(new RegistreEnchereVue(_monEnchere));
         }
         
+        /// <summary>
+        /// Cette méthode permet l'affichage d'une grille de boutons généré dynamiquement afin de pouvoir recouvrir l'image d'une enchère flash
+        /// </summary>
+        private void AfficherGrilleFlash()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 1; j < 5; j++)
+                {
+
+                    var button = new Button();
+                    button.Text = i.ToString();
+
+                    GrilleFlash.Children.Add(button, j, i);
+                }
+
+            }
+        }
+       
 
     }
 }
