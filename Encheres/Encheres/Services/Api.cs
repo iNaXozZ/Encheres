@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Encheres.Services
 {
-    class Api
+    public class Api
     {
         #region Methodes
         /// <summary>

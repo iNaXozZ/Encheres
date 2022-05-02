@@ -43,7 +43,9 @@ namespace Tests
 
 
 
-
+        /// <summary>
+        /// Test de la connexion d'un utilisateur à l'API en utilisant un mot de passe et un email qui ne correspondent pas à un utilisateur inscrit dans la BDD
+        /// </summary>
         [Test]
         public void ConnexionUtilisateurFailure()
         {
@@ -71,7 +73,6 @@ namespace Tests
 
             //Assert : Le résultat attendu est false car les informations envoyées à la BDD ne correspondent à aucun utilisateur présent dans la BDD
             Assert.AreEqual(false, _resultat);
-
         }
 
     }

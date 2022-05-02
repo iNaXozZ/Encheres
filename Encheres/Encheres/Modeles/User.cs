@@ -30,6 +30,7 @@ namespace Encheres.Modeles
             Password = password;
             Pseudo = pseudo;
         }
+
         public User()
         {
 
@@ -46,8 +47,6 @@ namespace Encheres.Modeles
             Email = email;
             Password = password;
         }
-
-
         #endregion
 
         #region Getters/Setters
