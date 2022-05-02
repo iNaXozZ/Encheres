@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace Encheres.VuesModeles
 {
-    class InscriptionPageVueModele : BaseVueModele
+    public class InscriptionPageVueModele : BaseVueModele
     {
        
         #region Attributs

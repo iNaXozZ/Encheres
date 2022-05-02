@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encheres.Android", "Enchere
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encheres", "Encheres\Encheres\Encheres.csproj", "{180A55C7-EC71-457E-89FC-44B6B64CD45A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{23416955-F377-4443-9F2C-206844740649}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{180A55C7-EC71-457E-89FC-44B6B64CD45A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{180A55C7-EC71-457E-89FC-44B6B64CD45A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{180A55C7-EC71-457E-89FC-44B6B64CD45A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{23416955-F377-4443-9F2C-206844740649}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23416955-F377-4443-9F2C-206844740649}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23416955-F377-4443-9F2C-206844740649}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23416955-F377-4443-9F2C-206844740649}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

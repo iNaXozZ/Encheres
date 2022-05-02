@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Encheres.VuesModeles
 {
-    class RegistreEncherirVueModele : BaseVueModele
+    public class RegistreEncherirVueModele : BaseVueModele
     {
         #region Attributs
         private Enchere _monEnchere;

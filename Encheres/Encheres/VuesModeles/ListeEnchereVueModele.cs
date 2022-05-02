@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Encheres.VuesModeles
 {
-    class ListeEnchereVueModele :BaseVueModele
+    public class ListeEnchereVueModele :BaseVueModele
     {
         
         #region Attributs

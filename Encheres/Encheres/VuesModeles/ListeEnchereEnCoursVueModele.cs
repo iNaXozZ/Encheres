@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Encheres.VuesModeles
 {
-    class ListeEnchereEnCoursVueModele : BaseVueModele
+    public class ListeEnchereEnCoursVueModele : BaseVueModele
     {
         #region Attributs
         private ObservableCollection<Enchere> _maListeEncheresEnCours;

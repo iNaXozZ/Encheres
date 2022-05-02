@@ -7,7 +7,7 @@ using Xamarin.Essentials;
 
 namespace Encheres.VuesModeles
 {
-    class PageProfilVueModele : BaseVueModele
+    public class PageProfilVueModele : BaseVueModele
     {
         private string _idUser;
         private readonly Api _apiServices = new Api();

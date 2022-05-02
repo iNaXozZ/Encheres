@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Encheres.Services
 {
-    class ApiAuthentification
+    public class ApiAuthentification
     {
         #region Methodes
         /// <summary>

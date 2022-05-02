@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace Encheres.VuesModeles
 {
-    class PageEnchereVueModele : BaseVueModele
+    public class PageEnchereVueModele : BaseVueModele
     {
         #region Attributs
         private Enchere _monEnchere;

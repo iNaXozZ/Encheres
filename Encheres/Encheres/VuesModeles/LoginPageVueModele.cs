@@ -70,7 +70,7 @@ namespace Encheres.VuesModeles
         /// </summary>
         public async void ActionPageAuthentification()
         {
-            //Pour éviter d'avoir personne connectée, on supprime l'éventuel utilisateur
+            //Pour éviter d'avoir une éventuelle personne connectée, on supprime l'éventuel utilisateur
             User.CollClasse.Clear();
 
             //Grâce à l'adresse email et le mot de passe entrés en dans le formulaire, on demande à l'API de vérifier
