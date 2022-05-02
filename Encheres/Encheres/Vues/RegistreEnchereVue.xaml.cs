@@ -14,11 +14,12 @@ namespace Encheres.Vues
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RegistreEnchereVue : ContentPage
     {
+        RegistreEncherirVueModele VuesModele;
         Enchere _monEnchere;
         public RegistreEnchereVue(Enchere param)
         {
             InitializeComponent();
-            BindingContext = new RegistreEncherirVueModele(param);
+            BindingContext = VuesModele = new RegistreEncherirVueModele(param);
             _monEnchere = param;
 
         }
@@ -26,6 +27,12 @@ namespace Encheres.Vues
         private void OnClickRetourPageEnchere(object sender, EventArgs e)
         {
             Navigation.PushAsync(new PageEnchereVue(_monEnchere));
+        }
+
+        protected override void OnDisappearing()
+        {
+            VuesModele.OnCancel = true;
+            base.OnDisappearing();
         }
     }
 }

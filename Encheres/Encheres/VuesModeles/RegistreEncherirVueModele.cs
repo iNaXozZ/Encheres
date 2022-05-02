@@ -18,6 +18,7 @@ namespace Encheres.VuesModeles
         private User _unUser;
         private bool _gagnantIsVisible = false;
         public DecompteTimer tmps;
+        public bool OnCancel = false;
         #endregion
 
         #region Constructeur
@@ -76,7 +77,7 @@ namespace Encheres.VuesModeles
         {
             Task.Run(async () =>
             {
-                while (true)
+                while (OnCancel == false)
                 {
                     Encherir.CollClasse.Clear();
                     MaListeDernieresEncheres = await _apiServices.GetAllAsyncByID<Encherir>("api/getLastSixOffer", Encherir.CollClasse, "Id", MonEnchere.Id);

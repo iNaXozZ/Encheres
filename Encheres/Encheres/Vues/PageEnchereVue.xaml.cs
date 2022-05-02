@@ -14,11 +14,12 @@ namespace Encheres.Vues
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageEnchereVue : ContentPage
     {
+        PageEnchereVueModele VuesModele;
         Enchere _monEnchere;
         public PageEnchereVue(Enchere param)
         {
             InitializeComponent();
-            BindingContext = new PageEnchereVueModele(param);
+            BindingContext = VuesModele = new PageEnchereVueModele(param);
             _monEnchere = param;
             AfficherGrilleFlash();
         }
@@ -52,6 +53,14 @@ namespace Encheres.Vues
             }
         }
        
+
+        protected override void OnDisappearing()
+        {
+            VuesModele.OnCancel = true;
+            base.OnDisappearing();
+        }
+
+
 
     }
 }

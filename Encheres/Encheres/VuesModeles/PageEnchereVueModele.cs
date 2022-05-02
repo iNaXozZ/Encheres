@@ -27,6 +27,7 @@ namespace Encheres.VuesModeles
         private bool _boutonEncherirVisible = false;
         private float _montant;
         private bool _affichageGrilleVisible = false;
+        public bool OnCancel = false;
         #endregion
 
         #region Constructeur
@@ -122,7 +123,7 @@ namespace Encheres.VuesModeles
             Task.Run(() =>
             {
                 tmps.Start(interval);
-                while (tmps.TempsRestant > TimeSpan.Zero)
+                while (tmps.TempsRestant > TimeSpan.Zero || OnCancel == false)
                 {
                     TempsRestantJour = tmps.TempsRestant.Days;
                     TempsRestantHeures = tmps.TempsRestant.Hours;
@@ -171,7 +172,7 @@ namespace Encheres.VuesModeles
         {
             Task.Run(async () =>
             {
-                while (true)
+                while (OnCancel == false)
                 {
                     PrixActuel = await _apiServices.GetOneAsyncByID<Encherir>("api/getActualPrice", Encherir.CollClasse, MonEnchere.Id.ToString());
                     Encherir.CollClasse.Clear();
