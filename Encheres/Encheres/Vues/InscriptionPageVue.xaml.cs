@@ -14,11 +14,11 @@ namespace Encheres.Vues
     
     public partial class InscriptionPageVue : ContentPage 
     {
-        
+        InscriptionPageVueModele VuesModele;
         public InscriptionPageVue()
         {
             InitializeComponent();
-            BindingContext = new InscriptionPageVueModele();
+            BindingContext = VuesModele = new InscriptionPageVueModele();
         }
 
         private void OnClickRetour(object sender, EventArgs e)

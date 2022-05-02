@@ -13,10 +13,11 @@ namespace Encheres.Vues
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PageProfilVue : ContentPage
     {
+        PageProfilVueModele  VuesModele;
         public PageProfilVue()
         {
             InitializeComponent();
-            BindingContext = new PageProfilVueModele();
+            BindingContext = VuesModele =  new PageProfilVueModele();
         }
 
         private void OnClickDeconnexion(object sender, EventArgs e)

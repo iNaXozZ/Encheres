@@ -13,10 +13,11 @@ namespace Encheres.Vues
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPageVue : ContentPage
     {
+        LoginPageVueModele Vuesmodele;
         public LoginPageVue()
         {
             InitializeComponent();
-            BindingContext = new LoginPageVueModele();
+            BindingContext = Vuesmodele = new LoginPageVueModele();
         }
 
       

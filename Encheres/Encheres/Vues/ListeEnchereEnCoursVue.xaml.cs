@@ -14,11 +14,12 @@ namespace Encheres.Vues
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListeEnchereEnCoursVue : ContentPage
     {
+        ListeEnchereEnCoursVueModele VuesModele;
         private string _idUser;
         public ListeEnchereEnCoursVue()
         {
             InitializeComponent();
-            BindingContext = new ListeEnchereEnCoursVueModele();
+            BindingContext = VuesModele = new ListeEnchereEnCoursVueModele();
         }
 
         private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
