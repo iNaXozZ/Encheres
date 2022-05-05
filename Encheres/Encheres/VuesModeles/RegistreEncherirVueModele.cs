@@ -99,7 +99,7 @@ namespace Encheres.VuesModeles
             TimeSpan interval = datefin - DateTime.Now;
             tmps.Start(interval);
 
-            if (tmps.TempsRestant <= TimeSpan.Zero || MonEnchere.LeTypeEnchere.Id == 2 && MaListeDernieresEncheres != null)
+            if (tmps.TempsRestant <= TimeSpan.Zero )
             {
                 GagnantIsVisible = true;
             }

@@ -84,6 +84,12 @@
                 </Frame>
                 <StackLayout >
                     <Button Text="Participer" BackgroundColor="IndianRed" TextColor="White" Margin="20,30,25,0" IsVisible="{Binding BoutonParticiperVisible}"  CornerRadius="10" />
+                    <StackLayout IsVisible="{Binding GagnantInverseVisible}">
+                        <Label Text=" Le gagnant de cette enchère est :" TextColor="CadetBlue" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold" Margin="10" />
+                        <Frame BorderColor="Crimson" CornerRadius="10" HasShadow="True" >
+                            <Label Text="{Binding UnUser.Pseudo, StringFormat=' 🎉🎊🎉 {0} 🎉🎊🎉'}" TextColor="CornflowerBlue" FontSize="Large" HorizontalOptions="Center" FontAttributes="Bold"/>
+                        </Frame>
+                    </StackLayout>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -107,7 +113,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Button Grid.Row="1" Text="Retour" BackgroundColor="CadetBlue" TextColor="White" Margin="20,0,25,0" Clicked="OnClickEncheresEnCours" CornerRadius="10" />
-                    <Button Grid.Row="1" Text="Voir" BackgroundColor="Gray" TextColor="White" Margin="20,0,25,0" Clicked="OnClickVoirDernieresEncheres" CornerRadius="10" Grid.Column="2"/>
+                    <Button Grid.Row="1" Text="Voir" BackgroundColor="Gray" TextColor="White" Margin="20,0,25,0" Clicked="OnClickVoirDernieresEncheres" CornerRadius="10" Grid.Column="2" IsVisible="{Binding BoutonVoirVisible}"/>
                 </Grid>
             </StackLayout>
         </ScrollView>

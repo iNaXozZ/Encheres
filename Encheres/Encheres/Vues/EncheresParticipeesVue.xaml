@@ -19,7 +19,7 @@
                             <DataTemplate>
                                 <Grid Padding="8" Margin="10">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="70" />
+                                        <RowDefinition Height="80" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />

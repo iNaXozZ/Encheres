@@ -25,11 +25,14 @@ namespace Encheres.VuesModeles
         private string _idUser;
         private string _pseudoUser;
         private readonly Api _apiServices = new Api();
+        private User _unUser;
         private bool _boutonEncherirVisible = false;
         private float _montant;
         private bool _affichageGrilleVisible = false;
         public bool OnCancel = false;
         private bool _boutonParticiperVisible = false;
+        private bool _boutonVoirVisible = true;
+        private bool _gagnantInverseVisible = false;
         #endregion
 
         #region Constructeur
@@ -47,6 +50,7 @@ namespace Encheres.VuesModeles
             CommandButtonEnchere = new Command(SetEncherir);
             this.GetAffichageGrilleVisible();
             this.GetBoutonParticiperVisible();
+            this.GetBoutonVoirVisible();
         }
         #endregion
 
@@ -102,6 +106,18 @@ namespace Encheres.VuesModeles
             get { return _boutonParticiperVisible; }
             set { SetProperty(ref _boutonParticiperVisible, value); }
         }
+
+        public bool BoutonVoirVisible
+        {
+            get { return _boutonVoirVisible; }
+            set { SetProperty(ref _boutonVoirVisible, value); }
+        }
+
+        public bool GagnantInverseVisible
+        {
+            get { return _gagnantInverseVisible; }
+            set { SetProperty(ref _gagnantInverseVisible, value); }
+        }
         public float Montant
         {
             get
@@ -115,6 +131,18 @@ namespace Encheres.VuesModeles
                     _montant = value;
                     OnPropertyChanged(nameof(Montant));
                 }
+            }
+        }
+
+        public User UnUser
+        {
+            get
+            {
+                return _unUser;
+            }
+            set
+            {
+                SetProperty(ref _unUser, value);
             }
         }
         public string IdUser { get => _idUser; set => _idUser = value; }
@@ -155,7 +183,7 @@ namespace Encheres.VuesModeles
             PseudoUser = await SecureStorage.GetAsync("PSEUDO");
 
             // Affichage de la fonctionnalité enchérir manuel que lorsqu'un utilisateur est connecté et que l'enchère est une enchère Inverse ou une enchère clasique
-            if (IdUser != null && MonEnchere.LeTypeEnchere.Id == 1 || MonEnchere.LeTypeEnchere.Id == 2)
+            if (IdUser != null && tmps.TempsRestant > TimeSpan.Zero && MonEnchere.LeTypeEnchere.Id == 1 || MonEnchere.LeTypeEnchere.Id == 2)
             {
                 BoutonEncherirVisible = true;
             }
@@ -187,6 +215,17 @@ namespace Encheres.VuesModeles
             if (IdUser != null && MonEnchere.LeTypeEnchere.Id == 3)
             {
                 BoutonParticiperVisible = true;
+            }
+
+        }
+
+        public void GetBoutonVoirVisible()
+        {
+
+            // Effacement de la fonctionnalité "Voir le registre des enchères" lorsqu'un utilisateur se trouve sur une enchère Inverse.
+            if ( MonEnchere.LeTypeEnchere.Id == 2)
+            {
+                BoutonVoirVisible = false;
             }
 
         }
@@ -282,8 +321,10 @@ namespace Encheres.VuesModeles
                 int resultatEncherir = await _apiServices.PostAsync<Encherir>(new Encherir(0, Montant, int.Parse(IdUser), MonEnchere.Id, PseudoUser), "api/postEncherir");
                 Encherir.CollClasse.Clear();
                 BoutonEncherirVisible = false;
+                tmps.TempsRestant = TimeSpan.Zero;
                 Thread.Sleep(2000);
                 await Application.Current.MainPage.DisplayAlert("Succès ✔️ ", "Vous avez enchéris avec succès", "OK");
+                this.AfficherLeGagnantInverse();
                
             }
 
@@ -305,6 +346,17 @@ namespace Encheres.VuesModeles
                 await Application.Current.MainPage.DisplayAlert("Echec ❌ ", "Il y a eu un problème avec votre enchère", "OK");
             }
 
+        }
+
+
+        /// <summary>
+        /// Cette méthode permet de retourner le Gagnant de l'enchère en cours qui vient de se terminer
+        /// </summary>
+        public async void AfficherLeGagnantInverse()
+        {
+            GagnantInverseVisible = true;
+            UnUser = await _apiServices.GetOneAsyncByID<User>("api/getGagnant", User.CollClasse, MonEnchere.Id);
+            User.CollClasse.Clear();
         }
         #endregion
     }
