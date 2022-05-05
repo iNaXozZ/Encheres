@@ -81,7 +81,6 @@ namespace Encheres.VuesModeles
                 {
                     Encherir.CollClasse.Clear();
                     MaListeDernieresEncheres = await _apiServices.GetAllAsyncByID<Encherir>("api/getLastSixOffer", Encherir.CollClasse, "Id", MonEnchere.Id);
-
                     Thread.Sleep(18000);
                     
                 }
@@ -100,7 +99,7 @@ namespace Encheres.VuesModeles
             TimeSpan interval = datefin - DateTime.Now;
             tmps.Start(interval);
 
-            if (tmps.TempsRestant <= TimeSpan.Zero)
+            if (tmps.TempsRestant <= TimeSpan.Zero || MonEnchere.LeTypeEnchere.Id == 2 && MaListeDernieresEncheres != null)
             {
                 GagnantIsVisible = true;
             }

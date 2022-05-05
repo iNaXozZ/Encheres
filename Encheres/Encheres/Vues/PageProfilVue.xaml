@@ -13,10 +13,11 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Image Source="{Binding LeUser.PhotoStream}" Aspect="Fill" HeightRequest="200" VerticalOptions="StartAndExpand" BackgroundColor="CadetBlue"/>
-                    <Frame Grid.Row="1" HasShadow="True" CornerRadius="10" Margin="20,-50,20,0" Padding="18" HeightRequest="220" VerticalOptions="StartAndExpand">
+                    <Image  Aspect="Fill" HeightRequest="200" VerticalOptions="StartAndExpand" BackgroundColor="CadetBlue"/>
+                    <Frame Grid.Row="1" HasShadow="True" CornerRadius="10" Margin="20,-50,20,0" Padding="18" HeightRequest="300" VerticalOptions="StartAndExpand">
                         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
@@ -47,6 +48,7 @@
                                     <Label Text="{Binding LeUser.Email}" TextColor="#2C3E50" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center" Margin="-5"/>
                                 </StackLayout>
                             </Grid>
+                            <Button Grid.Row="3" Text="Vos participations" BackgroundColor="CadetBlue" TextColor="White" Margin="20,0,25,30"  CornerRadius="10" Clicked="OnClickEncheresParticipees" />
                         </Grid>
                     </Frame>
                 </Grid>

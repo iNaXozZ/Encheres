@@ -16,6 +16,7 @@ namespace Encheres.Vues
     {
         PageEnchereVueModele VuesModele;
         Enchere _monEnchere;
+        public List<Button> ListeButton = new List<Button>();
         public PageEnchereVue(Enchere param)
         {
             InitializeComponent();
@@ -39,6 +40,9 @@ namespace Encheres.Vues
         /// </summary>
         private void AfficherGrilleFlash()
         {
+            //string[] textSplit = VuesModele.MonEnchere.TableauFlash.Split(',');
+            //int nb = 0;
+
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 1; j < 5; j++)
@@ -46,11 +50,15 @@ namespace Encheres.Vues
 
                     var button = new Button();
                     button.Text = i.ToString();
+                    button.BackgroundColor = Color.CadetBlue;
+                    button.TextColor = Color.White;
 
                     GrilleFlash.Children.Add(button, j, i);
+                    /*ListeButton.Add(button);
+                    nb++;*/
                 }
 
-            }
+            } 
         }
        
 

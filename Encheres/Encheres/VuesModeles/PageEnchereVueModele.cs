@@ -21,6 +21,7 @@ namespace Encheres.VuesModeles
         private int _tempsRestantSecondes;
         private Encherir _prixActuel;
         public DecompteTimer tmps;
+        TimeSpan interval;
         private string _idUser;
         private string _pseudoUser;
         private readonly Api _apiServices = new Api();
@@ -28,6 +29,7 @@ namespace Encheres.VuesModeles
         private float _montant;
         private bool _affichageGrilleVisible = false;
         public bool OnCancel = false;
+        private bool _boutonParticiperVisible = false;
         #endregion
 
         #region Constructeur
@@ -35,15 +37,16 @@ namespace Encheres.VuesModeles
         {
 
             _monEnchere = param;
+            tmps = new DecompteTimer();
+            DateTime datefin = param.Datefin;
+            interval = datefin - DateTime.Now;
+            tmps.Start(interval);
             this.GetTimerRemaining(param.Datefin);
             this.GetPrixActuelEnchere();
             this.GetBoutonEncherirVisible();
             CommandButtonEnchere = new Command(SetEncherir);
-            tmps = new DecompteTimer();
-            DateTime datefin = param.Datefin;
-            TimeSpan interval = datefin - DateTime.Now;
-            tmps.Start(interval);
             this.GetAffichageGrilleVisible();
+            this.GetBoutonParticiperVisible();
         }
         #endregion
 
@@ -93,6 +96,12 @@ namespace Encheres.VuesModeles
             get { return _affichageGrilleVisible; }
             set { SetProperty(ref _affichageGrilleVisible, value); }
         }
+
+        public bool BoutonParticiperVisible
+        {
+            get { return _boutonParticiperVisible; }
+            set { SetProperty(ref _boutonParticiperVisible, value); }
+        }
         public float Montant
         {
             get
@@ -116,13 +125,14 @@ namespace Encheres.VuesModeles
         #region Méthodes
         public void GetTimerRemaining(DateTime param)
         {
-            DateTime datefin = param;
-            TimeSpan interval = datefin - DateTime.Now;
-            DecompteTimer tmps = new DecompteTimer();
+            if (interval < TimeSpan.Zero)
+            {
+                OnCancel = true;
+                interval = TimeSpan.Zero;
+            }
 
             Task.Run(() =>
             {
-                tmps.Start(interval);
                 while (tmps.TempsRestant > TimeSpan.Zero || OnCancel == false)
                 {
                     TempsRestantJour = tmps.TempsRestant.Days;
@@ -144,7 +154,8 @@ namespace Encheres.VuesModeles
             IdUser = await SecureStorage.GetAsync("ID");
             PseudoUser = await SecureStorage.GetAsync("PSEUDO");
 
-            if (IdUser != null)
+            // Affichage de la fonctionnalité enchérir manuel que lorsqu'un utilisateur est connecté et que l'enchère est une enchère Inverse ou une enchère clasique
+            if (IdUser != null && MonEnchere.LeTypeEnchere.Id == 1 || MonEnchere.LeTypeEnchere.Id == 2)
             {
                 BoutonEncherirVisible = true;
             }
@@ -165,6 +176,24 @@ namespace Encheres.VuesModeles
 
         }
 
+
+        public async void GetBoutonParticiperVisible()
+        {
+            //Récupération de l'id et du pseudo de l'utilisateur qui est stocké dans le cache de l'application (SecureStorage)
+            IdUser = await SecureStorage.GetAsync("ID");
+            PseudoUser = await SecureStorage.GetAsync("PSEUDO");
+
+            // Affichage de la fonctionnalité "Participer" lorsqu'un utilisateur est connecté et que l'enchère est une enchère flash.
+            if (IdUser != null && MonEnchere.LeTypeEnchere.Id == 3)
+            {
+                BoutonParticiperVisible = true;
+            }
+
+        }
+
+
+
+
         /// <summary>
         /// Cette méthode permet grâce à l'API, de récupérer le prix actuel de l'enchère en cours toutes les X secondes
         /// </summary>
@@ -176,7 +205,7 @@ namespace Encheres.VuesModeles
                 {
                     PrixActuel = await _apiServices.GetOneAsyncByID<Encherir>("api/getActualPrice", Encherir.CollClasse, MonEnchere.Id.ToString());
                     Encherir.CollClasse.Clear();
-                    Thread.Sleep(10000);
+                    Thread.Sleep(5000);
                 }
             });
         }
@@ -250,10 +279,12 @@ namespace Encheres.VuesModeles
             // est supérieur au prix de réserve du produit alors,  grâce au bouton, l'enchère se mettra dans la BDD et l'enchère sera validée.
             if (PrixActuel != null && Montant > MonEnchere.PrixReserve && tmps.TempsRestant > TimeSpan.Zero)
             {
-                int resultatEncherir = await _apiServices.PostAsync<Encherir>(new Encherir(0, Montant, int.Parse(IdUser), MonEnchere.Id, PseudoUser), "api/postEncherirInverse");
+                int resultatEncherir = await _apiServices.PostAsync<Encherir>(new Encherir(0, Montant, int.Parse(IdUser), MonEnchere.Id, PseudoUser), "api/postEncherir");
                 Encherir.CollClasse.Clear();
-                Thread.Sleep(3000);
+                BoutonEncherirVisible = false;
+                Thread.Sleep(2000);
                 await Application.Current.MainPage.DisplayAlert("Succès ✔️ ", "Vous avez enchéris avec succès", "OK");
+               
             }
 
             //Ajout condition que si l'enchérir est inférieur au prix de réserve alors il y aura un message d'erreur lui indiquant que son enchérir est pas assez haute

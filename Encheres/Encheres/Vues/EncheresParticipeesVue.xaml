@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Encheres.Vues.EncheresParticipeesVue">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Liste des enchères participées"
+                   FontAttributes="Bold"
+                   FontSize="20"
+                   Margin="16"
+                   HorizontalOptions="Center"
+                   TextColor="CadetBlue"/>
+
+            <StackLayout>
+                <Frame HeightRequest="370" BorderColor="CornflowerBlue">
+                    <CollectionView ItemsSource="{Binding MaListeEncheresParticipees}"  BackgroundColor="White">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="8" Margin="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="70" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="{Binding LeProduit.Photo }" Grid.Row="0" Grid.Column="0" />
+                                    <Label Text="{Binding LeProduit.Nom}" Grid.Row="0" Grid.Column="1" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Frame>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="2" Text="Retour" BackgroundColor="CadetBlue" TextColor="White" Margin="20,0,25,30"  CornerRadius="10" Clicked="OnClickRetour" />
+                    <Button Grid.Row="2" Text="Enchères" BackgroundColor="Gray" TextColor="White" Margin="20,0,25,30"  CornerRadius="10" Grid.Column="2" Clicked="OnClickEncheres"/>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

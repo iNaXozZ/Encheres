@@ -16,12 +16,13 @@ namespace Encheres.Modeles
         private TypeEnchere _leTypeEnchere;
         private Magasin _leMagasin;
         private double _prixReserve;
+        private string _tableauFlash;
 
         #endregion
 
         #region Constructeurs
 
-        public Enchere(int id, Produit leProduit, DateTime datedebut, DateTime datefin, TypeEnchere leTypeEnchere, Magasin leMagasin, double prixReserve)
+        public Enchere(int id, Produit leProduit, DateTime datedebut, DateTime datefin, TypeEnchere leTypeEnchere, Magasin leMagasin, double prixReserve, string tableauFlash = null)
         {
             Enchere.CollClasse.Add(this);
             this.id = id;
@@ -31,6 +32,7 @@ namespace Encheres.Modeles
             this._leTypeEnchere = leTypeEnchere;
             _leMagasin = leMagasin;
             _prixReserve = prixReserve;
+            TableauFlash = tableauFlash;
         }
 
         #endregion
@@ -45,6 +47,7 @@ namespace Encheres.Modeles
         public TypeEnchere LeTypeEnchere { get => _leTypeEnchere; set => _leTypeEnchere = value; }
         public Magasin LeMagasin { get => _leMagasin; set => _leMagasin = value; }
         public double PrixReserve { get => _prixReserve; set => _prixReserve = value; }
+        public string TableauFlash { get => _tableauFlash; set => _tableauFlash = value; }
 
         #endregion
 

@@ -35,5 +35,10 @@ namespace Encheres.Vues
         {
             Navigation.PushAsync(new ListeEnchereEnCoursVue());
         }
+
+        private void OnClickEncheresParticipees(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new EncheresParticipeesVue());
+        }
     }
 }
