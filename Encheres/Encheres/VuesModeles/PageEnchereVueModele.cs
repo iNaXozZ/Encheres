@@ -183,7 +183,7 @@ namespace Encheres.VuesModeles
             PseudoUser = await SecureStorage.GetAsync("PSEUDO");
 
             // Affichage de la fonctionnalité enchérir manuel que lorsqu'un utilisateur est connecté et que l'enchère est une enchère Inverse ou une enchère clasique
-            if (IdUser != null && tmps.TempsRestant > TimeSpan.Zero && MonEnchere.LeTypeEnchere.Id == 1 || MonEnchere.LeTypeEnchere.Id == 2)
+            if (IdUser != null && tmps.TempsRestant > TimeSpan.Zero && MonEnchere.LeTypeEnchere.Id == 1 || MonEnchere.LeTypeEnchere.Id == 2 && IdUser != null && tmps.TempsRestant > TimeSpan.Zero)
             {
                 BoutonEncherirVisible = true;
             }
